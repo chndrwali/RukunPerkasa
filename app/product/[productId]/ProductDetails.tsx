@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/app/components/Button';
+import ProductImage from '@/app/components/products/ProductImage';
 import SetColor from '@/app/components/products/SetColor';
 import SetQuantity from '@/app/components/products/SetQuantity';
 import { Rating } from '@mui/material';
@@ -76,7 +77,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
-      <div>Images</div>
+      <ProductImage cartProduct={cartProduct} product={data} handleColorSelect={handleColorSelect} />
       <div className="flex flex-col gap-1 text-slate-500">
         <h2 className="text-3xl font-medium text-slate-700">{data.name}</h2>
         <div className="flex items-center gap-2">
@@ -94,7 +95,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
           <span className="font-semibold">BRAND: </span>
           {data.brand}
         </div>
-        <div className={data.inStock ? 'text-teal-400' : 'text-rose-400'}> {data.inStock ? 'in stock' : 'out of stock'}</div>
+        <div className={data.inStock ? 'text-teal-400' : 'text-rose-400'}> {data.inStock ? 'Stok tersedia' : 'Yahh stok nya habis :('}</div>
         <Horizontal />
         <SetColor cartProduct={cartProduct} images={data.images} handleColorSelect={handleColorSelect} />
         <Horizontal />
