@@ -44,7 +44,6 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
     price: data.price,
   });
 
-  console.log(cartProduct);
   const productRating = data.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) / data.reviews.length;
 
   const handleColorSelect = useCallback(
