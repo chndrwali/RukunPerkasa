@@ -1,7 +1,8 @@
 'use client';
 
+import SetColor from '@/app/components/products/SetColor';
 import { Rating } from '@mui/material';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 interface ProductDetailProps {
   data: any;
@@ -39,7 +40,15 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
     quantity: 1,
     price: data.price,
   });
+
+  console.log(cartProduct);
   const productRating = data.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) / data.reviews.length;
+
+  const handleColorSelect = useCallback((value: SelectedImgType) => {
+    setCartProduct((prev) => {
+      return { ...prev, selectedImg: value };
+    });
+  }, []);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
       <div>Images</div>
@@ -62,7 +71,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
         </div>
         <div className={data.inStock ? 'text-teal-400' : 'text-rose-400'}> {data.inStock ? 'in stock' : 'out of stock'}</div>
         <Horizontal />
-        <div>Color</div>
+        <SetColor cartProduct={cartProduct} images={data.images} handleColorSelect={handleColorSelect} />
         <Horizontal />
         <div>quantity:</div>
         <Horizontal />
