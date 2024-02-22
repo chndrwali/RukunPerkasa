@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Container from '../Container';
 import { Redressed } from 'next/font/google';
+import Image from 'next/image';
 
 const redressed = Redressed({ subsets: ['latin'], weight: ['400'] });
 
@@ -26,8 +27,9 @@ const NavBar = () => {
             md:gap-0
           "
           >
-            <Link href="/" className={`${redressed.className} font-bold text-2xl`}>
-              Rukun Perkasa
+            <Link href="/" className={`${redressed.className} flex items-center space-x-3 font-bold text-2xl`}>
+              <Image src="/logo/rukunperkasa.png" width="32" height={32} className="h-8" alt="Rukun Perkasa Logo" />
+              <span className="self-center whitespace-nowrap text-brown-800">Rukun Perkasa</span>
             </Link>
             <div className="hidden md:block"> Cari...</div>
             <div className="flex items-center gap-8 md:gap-12">
