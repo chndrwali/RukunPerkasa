@@ -4,6 +4,8 @@ import { useCallback, useState } from 'react';
 import Avatar from '../Avatar';
 import { AiFillCaretDown } from 'react-icons/ai';
 import Link from 'next/link';
+import MenuItem from './MenuItem';
+import { signOut } from 'next-auth/react';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +53,21 @@ const UserMenu = () => {
             cursor-pointer"
           >
             <div>
-              <Link href="orders"></Link>
+              <Link href="/orders">
+                <MenuItem onClick={toggleOpen}> Orderan anda</MenuItem>
+              </Link>
+              <Link href="/admin">
+                <MenuItem onClick={toggleOpen}> Admin Dashboard</MenuItem>
+              </Link>
+              <MenuItem
+                onClick={() => {
+                  toggleOpen();
+                  signOut();
+                }}
+              >
+                {' '}
+                Keluar
+              </MenuItem>
             </div>
           </div>
         )}
