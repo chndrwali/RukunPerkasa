@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer
       className="
-  bg-slate-700
+  bg-slate-900
   text-slate-200
   text-sm 
   mt-16

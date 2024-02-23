@@ -6,7 +6,7 @@ const HomeBanner = () => {
       <div className="container">
         <div className="flex flex-wrap">
           <div className="w-full self-center px-4 lg:pl-4 lg:pr-8 lg:w-1/2">
-            <h1 className="font-extrabold font-mono text-4xl mb-4 lg:text-5xl">
+            <h1 className="font-extrabold text-4xl mb-4 lg:text-5xl">
               <span className="text-black">Kusen kayu kami menjamin ketahanan luar biasa</span>
             </h1>
             <h2 className="font-semibold text-black text-xl mb-3 lg:text-3xl">Lorem ipsum dolor sit amet.</h2>

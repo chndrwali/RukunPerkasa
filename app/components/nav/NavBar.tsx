@@ -11,7 +11,7 @@ const NavBar = () => {
       className="
   sticky
   top-0
-  bg-slate-200
+  bg-slate-50
   z-30
   shadow-sm
   "

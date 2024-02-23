@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Toaster
           toastOptions={{
             style: {
-              background: 'rgb(51 65 85)',
+              background: '#E5843C',
               color: '#fff',
             },
           }}
