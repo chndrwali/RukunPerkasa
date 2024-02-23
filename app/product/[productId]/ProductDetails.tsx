@@ -11,7 +11,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { MdCheckCircle } from 'react-icons/md';
 
 interface ProductDetailProps {
-  data: any;
+  products: any;
 }
 
 export type CartProductType = {
@@ -35,19 +35,19 @@ const Horizontal = () => {
   return <hr className="w-[30%] my-2" />;
 };
 
-const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
+const ProductDetails: React.FC<ProductDetailProps> = ({ products }) => {
   const { handleAddProductToCart, cartProducts } = useCart();
   const [isProductInCart, setIsProductInCart] = useState(false);
 
   const [cartProduct, setCartProduct] = useState<CartProductType>({
-    id: data.id,
-    name: data.id,
-    description: data.id,
-    category: data.id,
-    brand: data.id,
-    selectedImg: { ...data.images[0] },
+    id: products.id,
+    name: products.name,
+    description: products.description,
+    category: products.category,
+    brand: products.brand,
+    selectedImg: { ...products.images[0] },
     quantity: 1,
-    price: data.price,
+    price: products.price,
   });
 
   const router = useRouter();
@@ -58,7 +58,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
     setIsProductInCart(false);
 
     if (cartProducts) {
-      const existingIndex = cartProducts.findIndex((item) => item.id === data.id);
+      const existingIndex = cartProducts.findIndex((item) => item.id === products.id);
 
       if (existingIndex > -1) {
         setIsProductInCart(true);
@@ -66,7 +66,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
     }
   }, [cartProducts]);
 
-  const productRating = data.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) / data.reviews.length;
+  const productRating = products.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) / products.reviews.length;
 
   const handleColorSelect = useCallback(
     (value: SelectedImgType) => {
@@ -78,7 +78,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
   );
 
   const handleQtyIncrease = useCallback(() => {
-    if (cartProduct.quantity === 100) {
+    if (cartProduct.quantity === 99) {
       return;
     }
 
@@ -87,7 +87,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
     });
   }, [cartProduct]);
   const handleQtyDecrease = useCallback(() => {
-    if (cartProduct.quantity === 0) {
+    if (cartProduct.quantity === 1) {
       return;
     }
 
@@ -98,25 +98,25 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
-      <ProductImage cartProduct={cartProduct} product={data} handleColorSelect={handleColorSelect} />
+      <ProductImage cartProduct={cartProduct} product={products} handleColorSelect={handleColorSelect} />
       <div className="flex flex-col gap-1 text-slate-500">
-        <h2 className="text-3xl font-medium text-slate-700">{data.name}</h2>
+        <h2 className="text-3xl font-medium text-slate-700">{products.name}</h2>
         <div className="flex items-center gap-2">
           <Rating value={productRating} readOnly />
-          <span>{data.reviews.length} review</span>
+          <span>{products.reviews.length} review</span>
         </div>
         <Horizontal />
-        <div className="text-justify">{data.description}</div>
+        <div className="text-justify">{products.description}</div>
         <Horizontal />
         <div>
           <span className="font-semibold">KATEGORI: </span>
-          {data.category}
+          {products.category}
         </div>
         <div>
           <span className="font-semibold">BRAND: </span>
-          {data.brand}
+          {products.brand}
         </div>
-        <div className={data.inStock ? 'text-teal-400' : 'text-rose-400'}> {data.inStock ? 'Stok tersedia' : 'Yahh stok nya habis :('}</div>
+        <div className={products.inStock ? 'text-teal-400' : 'text-rose-400'}> {products.inStock ? 'Stok tersedia' : 'Yahh stok nya habis :('}</div>
         <Horizontal />
         {isProductInCart ? (
           <>
@@ -136,7 +136,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ data }) => {
           </>
         ) : (
           <>
-            <SetColor cartProduct={cartProduct} images={data.images} handleColorSelect={handleColorSelect} />
+            <SetColor cartProduct={cartProduct} images={products.images} handleColorSelect={handleColorSelect} />
             <Horizontal />
             <SetQuantity cartProduct={cartProduct} handleQtyDecrease={handleQtyDecrease} handleQtyIncrease={handleQtyIncrease} />
             <Horizontal />

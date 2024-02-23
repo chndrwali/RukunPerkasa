@@ -13,7 +13,7 @@ const Product = ({ params }: { params: IPrams }) => {
     <div className="p-8">
       <Container>
         {product.map((product: any) => {
-          return <ProductDetails key={product.id} data={product} />;
+          return <ProductDetails key={product.id} products={product} />;
         })}
         {product.map((product: any) => {
           return (
