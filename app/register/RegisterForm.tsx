@@ -41,6 +41,7 @@ const RegisterForm = () => {
           password: data.password,
           redirect: false,
         }).then((callback) => {
+          console.log(callback);
           if (callback?.ok) {
             router.push('/cart');
             router.refresh();
