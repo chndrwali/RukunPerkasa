@@ -20,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({ label, disabled, outline, small, custom
       disabled={disabled}
       className={`{
         disabled:opacity-70
+        disabled:cursor-not-allowed
         rounded-md
         hover:opacity-80
         transition
