@@ -11,7 +11,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { MdCheckCircle } from 'react-icons/md';
 
 interface ProductDetailProps {
-  products: any;
+  product: any;
 }
 
 export type CartProductType = {
@@ -35,19 +35,19 @@ const Horizontal = () => {
   return <hr className="w-[30%] my-2" />;
 };
 
-const ProductDetails: React.FC<ProductDetailProps> = ({ products }) => {
+const ProductDetails: React.FC<ProductDetailProps> = ({ product }) => {
   const { handleAddProductToCart, cartProducts } = useCart();
   const [isProductInCart, setIsProductInCart] = useState(false);
 
   const [cartProduct, setCartProduct] = useState<CartProductType>({
-    id: products.id,
-    name: products.name,
-    description: products.description,
-    category: products.category,
-    brand: products.brand,
-    selectedImg: { ...products.images[0] },
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    brand: product.brand,
+    selectedImg: { ...product.images[0] },
     quantity: 1,
-    price: products.price,
+    price: product.price,
   });
 
   const router = useRouter();
@@ -58,7 +58,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ products }) => {
     setIsProductInCart(false);
 
     if (cartProducts) {
-      const existingIndex = cartProducts.findIndex((item) => item.id === products.id);
+      const existingIndex = cartProducts.findIndex((item) => item.id === product.id);
 
       if (existingIndex > -1) {
         setIsProductInCart(true);
@@ -66,7 +66,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ products }) => {
     }
   }, [cartProducts]);
 
-  const productRating = products.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) / products.reviews.length;
+  const productRating = product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) / product.reviews.length;
 
   const handleColorSelect = useCallback(
     (value: SelectedImgType) => {
@@ -98,25 +98,25 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ products }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
-      <ProductImage cartProduct={cartProduct} product={products} handleColorSelect={handleColorSelect} />
+      <ProductImage cartProduct={cartProduct} product={product} handleColorSelect={handleColorSelect} />
       <div className="flex flex-col gap-1 text-slate-500">
-        <h2 className="text-3xl font-medium text-slate-700">{products.name}</h2>
+        <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
         <div className="flex items-center gap-2">
           <Rating value={productRating} readOnly />
-          <span>{products.reviews.length} review</span>
+          <span>{product.reviews.length} review</span>
         </div>
         <Horizontal />
-        <div className="text-justify">{products.description}</div>
+        <div className="text-justify">{product.description}</div>
         <Horizontal />
         <div>
           <span className="font-semibold">KATEGORI: </span>
-          {products.category}
+          {product.category}
         </div>
         <div>
           <span className="font-semibold">BRAND: </span>
-          {products.brand}
+          {product.brand}
         </div>
-        <div className={products.inStock ? 'text-teal-400' : 'text-rose-400'}> {products.inStock ? 'Stok tersedia' : 'Yahh stok nya habis :('}</div>
+        <div className={product.inStock ? 'text-teal-400' : 'text-rose-400'}> {product.inStock ? 'Stok tersedia' : 'Yahh stok nya habis :('}</div>
         <Horizontal />
         {isProductInCart ? (
           <>
@@ -136,7 +136,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ products }) => {
           </>
         ) : (
           <>
-            <SetColor cartProduct={cartProduct} images={products.images} handleColorSelect={handleColorSelect} />
+            <SetColor cartProduct={cartProduct} images={product.images} handleColorSelect={handleColorSelect} />
             <Horizontal />
             <SetQuantity cartProduct={cartProduct} handleQtyDecrease={handleQtyDecrease} handleQtyIncrease={handleQtyIncrease} />
             <Horizontal />

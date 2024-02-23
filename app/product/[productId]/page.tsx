@@ -1,7 +1,7 @@
 import Container from '@/app/components/Container';
-import { product } from '@/utils/product';
 import ProductDetails from './ProductDetails';
 import ListRating from './ListRating';
+import { products } from '@/utils/products';
 
 interface IPrams {
   productId?: string;
@@ -9,20 +9,16 @@ interface IPrams {
 
 const Product = ({ params }: { params: IPrams }) => {
   console.log('params', params);
+
+  const product = products.find((item) => item.id === params.productId);
   return (
     <div className="p-8">
       <Container>
-        {product.map((product: any) => {
-          return <ProductDetails key={product.id} products={product} />;
-        })}
-        {product.map((product: any) => {
-          return (
-            <div key={product.id} className="flex flex-col mt-20 gap-4">
-              <div>Add Rating</div>
-              <ListRating key={product.id} product={product} />
-            </div>
-          );
-        })}
+        <ProductDetails product={product} />;
+        <div className="flex flex-col mt-20 gap-4">
+          <div>Add Rating</div>
+          <ListRating product={product} />
+        </div>
       </Container>
     </div>
   );
