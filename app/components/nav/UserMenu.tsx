@@ -6,6 +6,7 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import Link from 'next/link';
 import MenuItem from './MenuItem';
 import { signOut } from 'next-auth/react';
+import BackDrop from './BackDrop';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,9 +70,18 @@ const UserMenu = () => {
                 Keluar
               </MenuItem>
             </div>
+            <div>
+              <Link href="/login">
+                <MenuItem onClick={toggleOpen}> Masuk</MenuItem>
+              </Link>
+              <Link href="/register">
+                <MenuItem onClick={toggleOpen}> Daftar</MenuItem>
+              </Link>
+            </div>
           </div>
         )}
       </div>
+      {isOpen ? <BackDrop onClick={toggleOpen} /> : null}
     </>
   );
 };
