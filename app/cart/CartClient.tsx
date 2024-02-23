@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MdArrowBack } from 'react-icons/md';
 import Heading from '../components/Heading';
 import Button from '../components/Button';
+import ItemContent from './ItemContent';
 
 const CartClient = () => {
   const { cartProducts } = useCart();
@@ -35,7 +36,7 @@ const CartClient = () => {
       <div>
         {cartProducts &&
           cartProducts.map((item) => {
-            return <div key={item.id}>{item.name}</div>;
+            return <ItemContent key={item.id} item={item} />;
           })}
       </div>
       <div className="border-t[1.5px] border-slate-200 py-4 flex justify-between gap-4">
@@ -49,6 +50,10 @@ const CartClient = () => {
           </div>
           <p className="text-slate-500">Pajak dan pengiriman dihitung saat checkout</p>
           <Button label="Checkout" onClick={() => {}} />
+          <Link href={'/'} className="text-slate-500 flex items-center gap-1 mt-2 ">
+            <MdArrowBack />
+            <span>Lanjut belanja</span>
+          </Link>
         </div>
       </div>
     </div>
