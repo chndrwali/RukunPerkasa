@@ -14,10 +14,10 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# This Project Also Using
+# Tools and Frameworks Used in This Project
 
-[MongoDB Atlas](https://www.mongodb.com/) as DataBase Cloud
-[NextAuth.js](https://next-auth.js.org/) as Authentication User
-[Google Cloud Platform](https://console.cloud.google.com/welcome/new) as Authentication User Google
-[Prisma](https://www.prisma.io/) as Object Relational Mapping
-[TailwindCSS](https://tailwindcss.com/) as Framework Styling
+- [MongoDB Atlas](https://www.mongodb.com/): Cloud-based database.
+- [NextAuth.js](https://next-auth.js.org/): User authentication.
+- [Google Cloud Platform](https://console.cloud.google.com/welcome/new): Google authentication provider.
+- [Prisma](https://www.prisma.io/): Object Relational Mapping tool.
+- [Tailwind CSS](https://tailwindcss.com/): Styling framework.
