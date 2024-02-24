@@ -48,14 +48,19 @@ const LoginForm = () => {
   return (
     <>
       <Heading center title="Masuk" />
-      <Button outline label="Masuk dengan Google" onClick={() => {}} icon={AiOutlineGoogle} />
       <hr className="bg-slate-300 w-full h-[px]" />
+
       <Input id="email" label="Masukan Email" disabled={isLoading} register={register} errors={errors} required />
       <Input id="password" label="Masukan Password" disabled={isLoading} register={register} errors={errors} required type="password" />
+      <a href="#" className="justify-self-end text-xs text-gray-500 hover:underline">
+        Lupa Password?
+      </a>
       <Button label={isLoading ? 'Mengirim data...' : 'Masuk'} onClick={handleSubmit(onSubmit)} />
-      <p className="text-sm text-center">
-        Tidak mempunyai akun?{' '}
-        <Link href="/register" className="underline">
+      <p className="text-center text-slate-500">atau</p>
+      <Button outline label="Masuk dengan Google" onClick={() => {}} icon={AiOutlineGoogle} />
+      <p className="text-sm text-slate-500 text-center">
+        Belum punya akun?{' '}
+        <Link href="/register" className="text-blue-500 font-semibold  hover:underline">
           Daftar sekarang
         </Link>
       </p>

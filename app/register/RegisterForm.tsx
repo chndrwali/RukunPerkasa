@@ -60,17 +60,19 @@ const RegisterForm = () => {
   };
   return (
     <>
-      <Heading center title="Daftar" />
-      <Button outline label="Daftar dengan Google" onClick={() => {}} icon={AiOutlineGoogle} />
+      <Heading center title="Daftar akun Rukun Perkasa" />
+
       <hr className="bg-slate-300 w-full h-[px]" />
       <Input id="name" label="Nama Lengkap" disabled={isLoading} register={register} errors={errors} required />
       <Input id="email" label="Masukan Email" disabled={isLoading} register={register} errors={errors} required />
       <Input id="password" label="Masukan Password" disabled={isLoading} register={register} errors={errors} required type="password" />
       <Button label={isLoading ? 'Mengirim data...' : 'Daftar sekarang'} onClick={handleSubmit(onSubmit)} />
+      <p className="text-center text-slate-500">atau</p>
+      <Button outline label="Daftar dengan Google" onClick={() => {}} icon={AiOutlineGoogle} />
       <p className="text-sm text-center">
         Sudah mempunyai akun?{' '}
-        <Link href="/login" className="underline">
-          Masuk
+        <Link href="/login" className="font-semibold underline hover:underline hover:text-blue-500">
+          Masuk sekarang
         </Link>
       </p>
     </>
