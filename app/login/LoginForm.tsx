@@ -72,7 +72,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       </a>
       <Button label={isLoading ? 'Mengirim data...' : 'Masuk'} onClick={handleSubmit(onSubmit)} />
       <p className="text-center text-slate-500">atau</p>
-      <Button outline label="Masuk dengan Google" onClick={() => {}} icon={AiOutlineGoogle} />
+      <Button
+        outline
+        label="Masuk dengan Google"
+        onClick={() => {
+          signIn('google');
+        }}
+        icon={AiOutlineGoogle}
+      />
       <p className="text-sm text-slate-500 text-center">
         Belum punya akun?{' '}
         <Link href="/register" className="text-blue-500 font-semibold  hover:underline">

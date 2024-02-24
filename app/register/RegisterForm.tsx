@@ -84,7 +84,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
       <Input id="password" label="Masukan Password" disabled={isLoading} register={register} errors={errors} required type="password" />
       <Button label={isLoading ? 'Mengirim data...' : 'Daftar sekarang'} onClick={handleSubmit(onSubmit)} />
       <p className="text-center text-slate-500">atau</p>
-      <Button outline label="Daftar dengan Google" onClick={() => {}} icon={AiOutlineGoogle} />
+      <Button
+        outline
+        label="Daftar dengan Google"
+        onClick={() => {
+          signIn('google');
+        }}
+        icon={AiOutlineGoogle}
+      />
       <p className="text-sm text-center">
         Sudah mempunyai akun?{' '}
         <Link href="/login" className="font-semibold underline hover:underline hover:text-blue-500">
