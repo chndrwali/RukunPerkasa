@@ -13,6 +13,9 @@ const CheckoutClient = () => {
 
   const router = useRouter();
 
+  console.log('paymentIntent', paymentIntent);
+  console.log('clientSecret', clientSecret);
+
   useEffect(() => {
     if (cartProducts) {
       setLoading(true);
@@ -45,7 +48,11 @@ const CheckoutClient = () => {
         });
     }
   }, []);
-  return <></>;
+  return (
+    <>
+      <div>Checkout</div>
+    </>
+  );
 };
 
 export default CheckoutClient;
