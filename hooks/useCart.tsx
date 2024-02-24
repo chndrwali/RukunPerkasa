@@ -70,7 +70,7 @@ export const CartContextProvider = (props: Props) => {
         updatedCart = [product];
       }
 
-      toast.success('Produk di tambahkan ke keranjang');
+      toast.success('Produk telah di tambahkan ke keranjang');
       localStorage.setItem('eShopCartItems', JSON.stringify(updatedCart));
 
       return updatedCart;
