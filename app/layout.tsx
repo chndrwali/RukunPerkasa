@@ -15,10 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const currentUser = await getCurrentUser();
-
-  console.log('user<<<', currentUser);
-
   return (
     <html lang="en">
       <body className={`${roboto.className} text-slate-700`}>
