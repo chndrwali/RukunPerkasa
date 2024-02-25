@@ -1,9 +1,13 @@
 export const formatPrice = (amount: number) => {
+  const kurs = 15594;
+
+  const convertedAmount = amount * kurs;
+
   const formatter = new Intl.NumberFormat('id-ID', {
     style: 'currency',
-    currency: 'IDR', // Use the correct Indonesian rupiah currency code
-    minimumFractionDigits: 2, // Ensure two decimal places
+    currency: 'IDR',
+    minimumFractionDigits: 2,
   });
 
-  return formatter.format(amount);
+  return formatter.format(convertedAmount);
 };

@@ -5,7 +5,7 @@ export const products = [
     id: '64a654593e91b8e73a351e9b',
     name: 'iphone 14',
     description: 'Short description',
-    price: 29990000,
+    price: 2999,
     brand: 'apple',
     category: 'Phone',
     inStock: true,
@@ -28,7 +28,7 @@ export const products = [
     name: 'Logitech MX Keys Advanced Wireless Illuminated Keyboard, Tactile Responsive Typing, Backlighting, Bluetooth, USB-C, Apple macOS, Microsoft Windows, Linux, iOS, Android, Metal Build (Black)',
     description:
       'PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision',
-    price: 120000,
+    price: 14,
     brand: 'logitech',
     category: 'Accesories',
     inStock: true,
@@ -66,7 +66,7 @@ export const products = [
     name: 'Apple iPhone 13, 64GB',
     description:
       'The product is refurbished, fully functional, and in excellent condition. Backed by the 90-day E~Shop Renewed Guarantee.\n- This pre-owned product has been professionally inspected, tested and cleaned by Amazon qualified vendors. It is not certified by Apple.\n- This product is in "Excellent condition". The screen and body show no signs of cosmetic damage visible from 12 inches away.\n- This product will have a battery that exceeds 80% capacity relative to new.\n- Accessories may not be original, but will be compatible and fully functional. Product may come in generic box.\n- Product will come with a SIM removal tool, a charger and a charging cable. Headphone and SIM card are not included.\n- This product is eligible for a replacement or refund within 90-day of receipt if it does not work as expected.\n- Refurbished phones are not guaranteed to be waterproof.',
-    price: 13000000,
+    price: 1212,
     brand: 'Apple',
     category: 'Phone',
     inStock: true,
