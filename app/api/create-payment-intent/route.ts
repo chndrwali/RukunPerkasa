@@ -15,7 +15,9 @@ const calculatedOrderAmount = (items: CartProductType[]) => {
     return acc + itemTotal;
   }, 0);
 
-  return totalPrice;
+  const price: any = Math.floor(totalPrice);
+
+  return price;
 };
 
 export async function POST(request: Request) {
@@ -46,19 +48,18 @@ export async function POST(request: Request) {
       //update the order
 
       const [existing_order, update_order] = await Promise.all([
-        prisma.order
-          .findFirst({
-            where: {
-              paymentIntentId: payment_intend_id,
-            },
-          })
-          .prisma.order.update({
-            where: { paymentIntentId: payment_intend_id },
-            data: {
-              amount: total,
-              products: items,
-            },
-          }),
+        prisma.order.findFirst({
+          where: {
+            paymentIntentId: payment_intend_id,
+          },
+        }),
+        prisma.order.update({
+          where: { paymentIntentId: payment_intend_id },
+          data: {
+            amount: total,
+            products: items,
+          },
+        }),
       ]);
 
       if (!existing_order) {
