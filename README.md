@@ -21,3 +21,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Google Cloud Platform](https://console.cloud.google.com/welcome/new): Google authentication provider.
 - [Prisma](https://www.prisma.io/): Object Relational Mapping tool.
 - [Tailwind CSS](https://tailwindcss.com/): Styling framework.
+- [Stripe](https://stripe.com/): Handling payment processes.
+
+# Dummy Data for Stripe Visa
+
+- **Credit Card Number:** 4444 4444 4444 4444
+- **Expires:** 04/44
+- **CVC:** 444
