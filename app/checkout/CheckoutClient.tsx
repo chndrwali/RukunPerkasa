@@ -16,7 +16,7 @@ const CheckoutClient = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
-  const [paymentSuccess, setPaymentSucces] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   const router = useRouter();
 
@@ -65,7 +65,7 @@ const CheckoutClient = () => {
   };
 
   const handleSetPaymentSuccess = useCallback((value: boolean) => {
-    setPaymentSucces(value);
+    setPaymentSuccess(value);
   }, []);
   return (
     <div className="w-full">
