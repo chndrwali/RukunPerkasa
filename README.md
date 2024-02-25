@@ -25,6 +25,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # Dummy Data for Stripe Visa
 
-- **Credit Card Number:** 4444 4444 4444 4444
+- **Credit Card Number:** 4242 4242 4242 4242
 - **Expires:** 04/44
 - **CVC:** 444
