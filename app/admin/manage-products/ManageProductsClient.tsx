@@ -5,13 +5,19 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { formatPrice } from '@/utils/formatPrice';
 import Heading from '@/app/components/Heading';
 import Status from '@/app/components/Status';
-import { MdClose, MdDone } from 'react-icons/md';
+import { MdCached, MdClose, MdDelete, MdDone, MdRemoveRedEye } from 'react-icons/md';
+import ActionBtn from '@/app/components/ActionBtn';
+import { useCallback } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 interface ManageProductsClientProps {
   products: Product[];
 }
 
 const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products }) => {
+  const router = useRouter();
   let rows: any = [];
 
   if (products) {
@@ -54,10 +60,37 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products })
       headerName: 'Aksi',
       width: 200,
       renderCell: (params) => {
-        return <div>Action</div>;
+        return (
+          <div className="flex justify-between gap-4 w-full">
+            <ActionBtn
+              icon={MdCached}
+              onClick={() => {
+                handleToggleStock(params.row.id, params.row.inStock);
+              }}
+            />
+            <ActionBtn icon={MdDelete} onClick={() => {}} />
+            <ActionBtn icon={MdRemoveRedEye} onClick={() => {}} />
+          </div>
+        );
       },
     },
   ];
+
+  const handleToggleStock = useCallback((id: string, inStock: boolean) => {
+    axios
+      .put('/api/product', {
+        id,
+        inStock: !inStock,
+      })
+      .then((res) => {
+        toast.success('Status produk diubah');
+        router.refresh();
+      })
+      .catch((err: any) => {
+        toast.error('Ups! Ada yang salah');
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className="max-w-[1150px] m-auto text-xl">
@@ -75,6 +108,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products })
           }}
           pageSizeOptions={[9, 20]}
           checkboxSelection
+          disableRowSelectionOnClick
         />
       </div>
     </div>
