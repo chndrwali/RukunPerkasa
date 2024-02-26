@@ -5,12 +5,12 @@ import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyD-CPEdXA1y5hf5xe78JSgkviznneL3twM',
-  authDomain: 'rukun-perkasa-vid.firebaseapp.com',
-  projectId: 'rukun-perkasa-vid',
-  storageBucket: 'rukun-perkasa-vid.appspot.com',
-  messagingSenderId: '184351888538',
-  appId: '1:184351888538:web:9268a57e6db87351197b23',
+  apiKey: 'AIzaSyAON9DlqbSlOwHNGhiRqW1SMPJRi6FxPMI',
+  authDomain: 'rukun-perkasa-vid1.firebaseapp.com',
+  projectId: 'rukun-perkasa-vid1',
+  storageBucket: 'rukun-perkasa-vid1.appspot.com',
+  messagingSenderId: '308242919748',
+  appId: '1:308242919748:web:e481373498ec2c2f606711',
 };
 
 // Initialize Firebase

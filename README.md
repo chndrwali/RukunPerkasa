@@ -22,6 +22,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Prisma](https://www.prisma.io/): Object Relational Mapping tool.
 - [Tailwind CSS](https://tailwindcss.com/): Styling framework.
 - [Stripe](https://stripe.com/): Handling payment processes.
+- [Firebase Storage](https://console.firebase.google.com/) Storage for save image.
 
 # Dummy Data for Stripe Visa
 
