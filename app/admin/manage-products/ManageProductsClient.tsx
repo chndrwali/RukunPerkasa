@@ -4,6 +4,8 @@ import { Product } from '@prisma/client';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { formatPrice } from '@/utils/formatPrice';
 import Heading from '@/app/components/Heading';
+import Status from '@/app/components/Status';
+import { MdClose, MdDone } from 'react-icons/md';
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -44,7 +46,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products })
       headerName: 'Ketersediaan',
       width: 120,
       renderCell: (params) => {
-        return <div>{params.row.inStock === true ? 'Stok Ada' : 'Stok Habis'}</div>;
+        return <div>{params.row.inStock === true ? <Status text="Stok ada" icon={MdDone} bg="bg-teal-200" color="text-teal-700" /> : <Status text="Stok habis" icon={MdClose} bg="bg-rose-200" color="text-rose-700" />}</div>;
       },
     },
     {
