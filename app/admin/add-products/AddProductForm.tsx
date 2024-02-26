@@ -3,7 +3,7 @@
 import Button from '@/app/components/Button';
 import Heading from '@/app/components/Heading';
 import CategoryInput from '@/app/components/inputs/CategoryInput';
-import CustomCheckBox from '@/app/components/inputs/CustomCheckbox';
+import CustomCheckBox from '@/app/components/inputs/CustomCheckBox';
 import Input from '@/app/components/inputs/Input';
 import SelectColor from '@/app/components/inputs/SelectColor';
 import TextArea from '@/app/components/inputs/TextArea';
@@ -14,6 +14,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export type ImageType = {
   color: string;
@@ -26,11 +28,10 @@ export type UploadedImageType = {
   image: File | null;
 };
 const AddProductForm = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[] | null>();
   const [isProductCreated, setIsProductCreated] = useState(false);
-
-  console.log('images>>>', images);
 
   const {
     register,
@@ -74,7 +75,7 @@ const AddProductForm = () => {
       return toast.error('Kategory tidak di pilih');
     }
 
-    if (!data.images || data.images.length === 0) {
+    if (!data.images || data.images.length !== 0) {
       setIsLoading(false);
       return toast.error('Gambar tidak di pilih');
     }
@@ -137,7 +138,19 @@ const AddProductForm = () => {
     await handleImageUploads();
     const productData = { ...data, images: uploadedImages };
 
-    console.log('productData', productData);
+    axios
+      .post('/api/product', productData)
+      .then(() => {
+        toast.success('Produk telah dibuat');
+        setIsProductCreated(true);
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error('Ada yang salah saat menyimpan produk ke database');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const category = watch('category');
