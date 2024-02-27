@@ -4,16 +4,15 @@ import Heading from '@/app/components/Heading';
 import Status from '@/app/components/Status';
 import { formatPrice } from '@/utils/formatPrice';
 import { Order } from '@prisma/client';
-import { useRouter } from 'next/navigation';
+import moment from 'moment';
 import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from 'react-icons/md';
+import OrderItem from './OrderItem';
 
 interface OrderDetailsProps {
   order: Order;
 }
 
 const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
-  //   const router = useRouter();
-
   return (
     <div className="max-w-[1150px] m-auto flex flex-col gap-2">
       <div className="mt-8 ">
@@ -48,6 +47,20 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
             <></>
           )}
         </div>
+      </div>
+      <div>Tanggal : {moment(order.createDate).format('DD/MM/YYYY')}</div>
+      <div>
+        <h2 className="font-semibold mt-4 mb-2">Produk yang dipesan</h2>
+        <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center">
+          <div className="col-span-2 justify-self-start">PRODUK</div>
+          <div className=" justify-self-center">HARGA</div>
+          <div className=" justify-self-center">JUUMLAH</div>
+          <div className=" justify-self-end">TOTAL HARGA</div>
+        </div>
+        {order.products &&
+          order.products.map((item) => {
+            return <OrderItem key={item.id} item={item} />;
+          })}
       </div>
     </div>
   );
