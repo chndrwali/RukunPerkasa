@@ -11,6 +11,8 @@ import { useCallback } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { deleteObject, getStorage, ref } from 'firebase/storage';
+import firebaseApp from '@/libs/firebase';
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -18,6 +20,7 @@ interface ManageProductsClientProps {
 
 const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products }) => {
   const router = useRouter();
+  const storage = getStorage(firebaseApp);
   let rows: any = [];
 
   if (products) {
@@ -68,7 +71,12 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products })
                 handleToggleStock(params.row.id, params.row.inStock);
               }}
             />
-            <ActionBtn icon={MdDelete} onClick={() => {}} />
+            <ActionBtn
+              icon={MdDelete}
+              onClick={() => {
+                handleDelete(params.row.id, params.row.images);
+              }}
+            />
             <ActionBtn icon={MdRemoveRedEye} onClick={() => {}} />
           </div>
         );
@@ -88,6 +96,37 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products })
       })
       .catch((err: any) => {
         toast.error('Ups! Ada yang salah');
+        console.log(err);
+      });
+  }, []);
+
+  const handleDelete = useCallback(async (id: string, images: any[]) => {
+    toast('Sedang menghapus produk, mohon tunggu...');
+
+    const handleImageDelete = async () => {
+      try {
+        for (const item of images) {
+          if (item.image) {
+            const imageRef = ref(storage, item.image);
+            await deleteObject(imageRef);
+            console.log('Menghapus gambar', item.image);
+          }
+        }
+      } catch (error) {
+        return console.log('Menghapus gambar error', error);
+      }
+    };
+
+    await handleImageDelete();
+
+    axios
+      .delete(`/api/product/${id}`)
+      .then((res) => {
+        toast.success('Produk di hapus');
+        router.refresh();
+      })
+      .catch((err) => {
+        toast.error('Gagal menghapus produk');
         console.log(err);
       });
   }, []);

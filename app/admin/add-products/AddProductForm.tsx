@@ -62,7 +62,7 @@ const AddProductForm = () => {
       setImages(null);
       setIsProductCreated(false);
     }
-  }, [isProductCreated]);
+  }, [isProductCreated, reset]);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log('data produk', data);
@@ -75,7 +75,7 @@ const AddProductForm = () => {
       return toast.error('Kategory tidak di pilih');
     }
 
-    if (!data.images || data.images.length !== 0) {
+    if (!data.images || data.images.length === 0) {
       setIsLoading(false);
       return toast.error('Gambar tidak di pilih');
     }
