@@ -1,20 +1,20 @@
 import Container from '@/app/components/Container';
 import OrderDetails from './OrderDetails';
-import ListRating from './ListRating';
+import getOrderById from '@/actions/getOrderById';
+import NullData from '@/app/components/NullData';
 
 interface IPrams {
   orderId?: string;
 }
 
-const Order = ({ params }: { params: IPrams }) => {
+const Order = async ({ params }: { params: IPrams }) => {
+  const order = await getOrderById(params);
+
+  if (!order) return <NullData title="Tidak ada order!" />;
   return (
     <div className="p-8">
       <Container>
-        <OrderDetails order={order} />;
-        <div className="flex flex-col mt-20 gap-4">
-          <div>Add Rating</div>
-          <ListRating order={order} />
-        </div>
+        <OrderDetails order={order} />
       </Container>
     </div>
   );

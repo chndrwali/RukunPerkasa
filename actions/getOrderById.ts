@@ -6,5 +6,18 @@ interface IParams {
 
 export default async function getOrderById(params: IParams) {
   try {
-  } catch (error) {}
+    const { orderId } = params;
+
+    const order = await prisma.order.findUnique({
+      where: {
+        id: orderId,
+      },
+    });
+
+    if (!order) return null;
+
+    return order;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 }
