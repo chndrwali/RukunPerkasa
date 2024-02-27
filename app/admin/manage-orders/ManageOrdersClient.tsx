@@ -32,7 +32,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
         customer: order.user.name,
         amount: formatPrice(order.amount / 100),
         paymentStatus: order.status,
-        date: moment(order.createDate).fromNow(),
+        date: moment(order.createDate).format('DD/MM/YYYY'),
         deliveryStatus: order.deliveryStatus,
       };
     });
