@@ -3,6 +3,8 @@ import ProductDetails from './ProductDetails';
 import ListRating from './ListRating';
 import getProductById from '@/actions/getProductById';
 import NullData from '@/app/components/NullData';
+import AddRating from './AddRating';
+import getCurrentUser from '@/actions/getCurrentUser';
 
 interface IPrams {
   productId?: string;
@@ -10,15 +12,16 @@ interface IPrams {
 
 const Product = async ({ params }: { params: IPrams }) => {
   const product = await getProductById(params);
+  const user = await getCurrentUser();
 
   if (!product) return <NullData title="Ups! Produk dengan id tidak ada" />;
 
   return (
     <div className="p-8">
       <Container>
-        <ProductDetails product={product} />;
+        <ProductDetails product={product} />
         <div className="flex flex-col mt-20 gap-4">
-          <div>Add Rating</div>
+          <AddRating product={product} user={user} />
           <ListRating product={product} />
         </div>
       </Container>

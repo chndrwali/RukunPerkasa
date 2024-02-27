@@ -18,6 +18,7 @@ export default async function getCurrentUser() {
       where: {
         email: session?.user?.email,
       },
+      include: { orders: true },
     });
 
     if (!currentUser) {

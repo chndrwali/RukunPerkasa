@@ -7,7 +7,7 @@ export async function POST(request: Request) {
 
   if (!currentUser) return NextResponse.error();
 
-  if (currentUser.role === 'ADMIN') {
+  if (currentUser.role !== 'ADMIN') {
     return NextResponse.error();
   }
 
