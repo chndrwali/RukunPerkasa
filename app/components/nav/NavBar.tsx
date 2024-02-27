@@ -6,6 +6,7 @@ import CartCount from './CartCount';
 import UserMenu from './UserMenu';
 import getCurrentUser from '@/actions/getCurrentUser';
 import Categories from './Categories';
+import SearchBar from './SearchBar';
 
 const redressed = Redressed({ subsets: ['latin'], weight: ['400'] });
 
@@ -37,7 +38,9 @@ const NavBar = async () => {
               <Image src="/logo/rukunperkasa.png" width="32" height={32} className="h-8" alt="Rukun Perkasa Logo" />
               <span className="self-center whitespace-nowrap text-brown-800">Rukun Perkasa</span>
             </Link>
-            <div className="hidden md:block"> Cari...</div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
               <UserMenu currentUser={currentUser} />
