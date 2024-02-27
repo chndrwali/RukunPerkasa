@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     user: { connect: { id: currentUser.id } },
     amount: total,
     currency: 'usd',
-    status: 'pending',
+    status: 'complete',
     deliveryStatus: 'pending',
     paymentIntentId: payment_intend_id,
     products: items,
