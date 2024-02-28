@@ -55,7 +55,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
         }).then((callback) => {
           console.log(callback);
           if (callback?.ok) {
-            router.push('/cart');
+            router.push('/productlist');
             router.refresh();
             toast.success('Behasil masuk');
           }

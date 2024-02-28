@@ -8,6 +8,7 @@ import MenuItem from './MenuItem';
 import { signOut } from 'next-auth/react';
 import BackDrop from './BackDrop';
 import { SafeUser } from '@/types';
+import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
@@ -15,6 +16,7 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -58,35 +60,25 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             flex-col
             cursor-pointer"
           >
-            {currentUser ? (
-              <div>
-                <Link href="/orders">
-                  <MenuItem onClick={toggleOpen}> Orderan anda</MenuItem>
-                </Link>
-                <Link href="/admin">
-                  <MenuItem onClick={toggleOpen}> Admin Dashboard</MenuItem>
-                </Link>
-                <hr />
-                <MenuItem
-                  onClick={() => {
-                    toggleOpen();
-                    signOut();
-                  }}
-                >
-                  {' '}
-                  Keluar
-                </MenuItem>
-              </div>
-            ) : (
-              <div>
-                <Link href="/login">
-                  <MenuItem onClick={toggleOpen}> Masuk</MenuItem>
-                </Link>
-                <Link href="/register">
-                  <MenuItem onClick={toggleOpen}> Daftar</MenuItem>
-                </Link>
-              </div>
-            )}
+            <div>
+              <Link href="/orders">
+                <MenuItem onClick={toggleOpen}> Orderan anda</MenuItem>
+              </Link>
+              <Link href="/admin">
+                <MenuItem onClick={toggleOpen}> Admin Dashboard</MenuItem>
+              </Link>
+              <hr />
+              <MenuItem
+                onClick={() => {
+                  toggleOpen();
+                  signOut();
+                  router.push('/login');
+                }}
+              >
+                {' '}
+                Keluar
+              </MenuItem>
+            </div>
           </div>
         )}
       </div>
