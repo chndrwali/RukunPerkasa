@@ -33,7 +33,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
 
   useEffect(() => {
     if (currentUser) {
-      router.push('/cart');
+      router.push('/productlist');
       router.refresh();
     }
   });
@@ -72,7 +72,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
   };
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return <p className="text-center">Sudah login. mohon tunggu...</p>;
   }
   return (
     <>

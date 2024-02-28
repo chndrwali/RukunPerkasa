@@ -41,3 +41,10 @@ export const footer = {
     url: 'https://instagram.com/rukunperkasa',
   },
 };
+
+export const magic = {
+  title: 'Inovasi Tanpa Batas untuk Kusen Kayu dan Furniture',
+  desc: 'Rukun Perkasa adalah tim strategis, desainer, dan pengembang. Kami memecahkan masalah dengan inovasi. Cukup kecil untuk memberikan solusi sederhana dan cepat, namun cukup besar untuk memberikan kualitas dan cakupan yang Anda butuhkan dengan kecepatan yang Anda perlukan. Kami berkomitmen untuk menyediakan produk kusen kayu dan furniture berkualitas tinggi yang memenuhi standar industri.',
+  img: '/img/office-long-1.webp',
+  image: '/img/office-long-2.webp',
+};

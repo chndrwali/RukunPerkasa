@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       setIsLoading(false);
 
       if (callback?.ok) {
-        router.push('/cart');
+        router.push('/productlist');
         router.refresh();
         toast.success('Behasil masuk');
       }
@@ -58,7 +58,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
   };
 
   if (currentUser) {
-    return <p className="text-center">Logged in. Redirecting...</p>;
+    return <p className="text-center">Sudah login. tunggu sebentar...</p>;
   }
   return (
     <>
