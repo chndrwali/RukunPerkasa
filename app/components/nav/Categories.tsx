@@ -17,6 +17,7 @@ const Categories = () => {
       <div className="flex items-end justify-between">
         <div className="flex flex-col space-y-4">
           <h2 className="max-w-sm text-2xl md:text-4xl text-start text-brown-600 font-bold">Kategori</h2>
+          <div className="w-36 h-2 bg-brown-600 rounded-full" />
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">

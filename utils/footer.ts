@@ -48,3 +48,8 @@ export const magic = {
   img: '/img/office-long-1.webp',
   image: '/img/office-long-2.webp',
 };
+
+export const image = {
+  login: '/img/login.webp',
+  signup: '/img/signup.webp',
+};

@@ -35,6 +35,7 @@ export default async function ProductList({ searchParams }: ProductListProps) {
           <div className="flex items-end justify-between">
             <div className="flex flex-col space-y-4">
               <h2 className="max-w-sm text-2xl md:text-4xl text-start text-brown-600 font-bold">Produk</h2>
+              <div className="w-32 h-2 bg-brown-600 rounded-full" />
             </div>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
