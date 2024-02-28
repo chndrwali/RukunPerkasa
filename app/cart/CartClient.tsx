@@ -20,7 +20,7 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center min-h-screen">
         <div className="text-2xl">Keranjang kamu kosong</div>
         <div>
           <Link href={'/'} className="text-slate-500 flex items-center gap-1 mt-2 ">
@@ -33,7 +33,7 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Heading title="Keranjang Belanja" center />
       <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center mt-8">
         <div className="col-span-2 justify-self-start">PRODUK</div>

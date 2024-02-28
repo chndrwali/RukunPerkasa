@@ -10,7 +10,7 @@ const Admin = async () => {
   const users = await getUsers();
 
   return (
-    <div className="pt-8 mb-6">
+    <div className="pt-8 mb-6 min-h-screen">
       <Container>
         <Summary products={products} orders={orders} users={users} />
       </Container>

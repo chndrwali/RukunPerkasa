@@ -18,7 +18,7 @@ const NavBar = async () => {
         <Container>
           <div className="flex items-center justify-between gap-3 md:gap-0">
             <Link href="/" className={`${redressed.className} flex items-center space-x-3 font-bold text-2xl`}>
-              <Image src="/logo/rukunperkasa.png" width="32" height="32" className="h-8" alt="Rukun Perkasa Logo" />
+              <Image src="/logo/rukunperkasa.png" width={44} height={44} className="h-11 w-11" alt="Rukun Perkasa Logo" />
               <span className="self-center whitespace-nowrap text-brown-800">Rukun Perkasa</span>
             </Link>
             <div className="hidden md:block">
