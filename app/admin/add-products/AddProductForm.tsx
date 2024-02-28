@@ -188,14 +188,14 @@ const AddProductForm = () => {
       <Heading title="Tambahkan Produk" center />
       <Input id="name" label="Nama Produk" disabled={isLoading} register={register} errors={errors} required />
       <Input id="price" label="Harga Produk" disabled={isLoading} register={register} errors={errors} type="number" required />
-      <Input id="brand" label="Brand" disabled={isLoading} register={register} errors={errors} required />
+      <Input id="brand" label="Tipe Kayu" disabled={isLoading} register={register} errors={errors} required />
       <TextArea id="description" label="Deskripsi Produk" disabled={isLoading} register={register} errors={errors} required />
       <CustomCheckBox id="inStock" register={register} label="Produk tersedia" />
       <div className="w-full font-medium">
         <div className="mb-2 font-semibold">Pilih kategori</div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
           {categories.map((item) => {
-            if (item.label === 'All') {
+            if (item.label === 'Semua') {
               return null;
             }
             return (

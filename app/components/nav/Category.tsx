@@ -47,9 +47,9 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   return (
     <div
       onClick={handleClick}
-      className={`flex flex-col items-center justify-center p-4 border rounded-lg shadow-md cursor-pointer hover:bg-brown-500 hover:text-slate-50 ${selected ? 'border-brown-600 text-slate-800' : 'border-transparent text-slate-500'}`}
+      className={`flex flex-col items-center justify-center p-4 border border-black rounded-lg shadow-md cursor-pointer hover:bg-brown-500 hover:text-slate-50 ${selected ? 'bg-brown-500 text-white' : ' text-slate-800'}`}
     >
-      <Icon size={32} className={`${selected ? 'text-slate-800' : 'text-slate-500'} mb-2 hover:text-slate-50`} />
+      <Icon size={32} className="mb-2" />
       <div className="font-medium text-lg">{label}</div>
     </div>
   );

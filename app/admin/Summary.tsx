@@ -88,7 +88,7 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
           summaryKeys.map((key) => {
             return (
               <div key={key} className="rounded-xl border-2 p-4 flex flex-col items-center gap-2 transition">
-                <div className="text-xl md:text-4xl font-bold ">{summaryData[key].label === 'Total Pendapatan' ? <>{formatPrice(summaryData[key].digit)}</> : <>{formatNumber(summaryData[key].digit)}</>}</div>
+                <div className="text-xl md:text-4xl font-bold ">{summaryData[key].label === 'Total Pendapatan' ? <>{formatPrice(summaryData[key].digit / 100)}</> : <>{formatNumber(summaryData[key].digit)}</>}</div>
                 <div>{summaryData[key].label}</div>
               </div>
             );

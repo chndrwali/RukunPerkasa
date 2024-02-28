@@ -1,12 +1,12 @@
 export const colors = [
   {
-    color: 'White',
+    color: 'Putih',
     colorCode: '#FFFFFF',
     image: null,
   },
   {
-    color: 'Black',
-    colorCode: '#000000',
+    color: 'Coklat',
+    colorCode: '#985914',
     image: null,
   },
   {
@@ -15,22 +15,22 @@ export const colors = [
     image: null,
   },
   {
-    color: 'Gray',
-    colorCode: '#FF0000',
+    color: 'Putih Pernis',
+    colorCode: '#FFFFF0',
     image: null,
   },
   {
-    color: 'Gold',
-    colorCode: '#FFD700',
+    color: 'Coklat Pernis',
+    colorCode: '#D3A779',
     image: null,
   },
   {
-    color: 'Blue',
+    color: 'Biru',
     colorCode: '#0000FF',
     image: null,
   },
   {
-    color: 'Graphite',
+    color: 'Custom',
     colorCode: '#383838',
     image: null,
   },

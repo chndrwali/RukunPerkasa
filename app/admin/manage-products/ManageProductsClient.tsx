@@ -49,7 +49,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({ products })
       },
     },
     { field: 'category', headerName: 'Kategori', width: 100 },
-    { field: 'brand', headerName: 'Brand', width: 100 },
+    { field: 'brand', headerName: 'Tipe Kayu', width: 100 },
     {
       field: 'inStock',
       headerName: 'Ketersediaan',

@@ -31,11 +31,18 @@ export default async function ProductList({ searchParams }: ProductListProps) {
     <div className="p-8 min-h-screen">
       <Container>
         <Categories />
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
-          {shuffledProducts.map((product: any, index: Key | null | undefined) => {
-            return <ProductCard key={index} data={product} />;
-          })}
-        </div>
+        <section className="space-y-8 px-4 sm:px-6 lg:px-8 py-8 md:pt-10  sm:pb-28">
+          <div className="flex items-end justify-between">
+            <div className="flex flex-col space-y-4">
+              <h2 className="max-w-sm text-2xl md:text-4xl text-start text-brown-600 font-bold">Produk</h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            {shuffledProducts.map((product: any, index: Key | null | undefined) => {
+              return <ProductCard key={index} data={product} />;
+            })}
+          </div>
+        </section>
       </Container>
     </div>
   );
