@@ -6,7 +6,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 const CategoriesHome = () => {
   return (
-    <section className="space-y-8 px-4 sm:px-6 lg:px-8 py-8 md:pt-0 lg:pt-24 sm:pb-10">
+    <section className="space-y-8 px-4 sm:px-6 lg:px-8 py-8 lg:pt-20 sm:pb-10">
       <div className="flex items-end justify-between">
         <div className="flex flex-col space-y-4">
           <h2 className="max-w-sm text-3xl md:text-5xl text-start text-brown-600 font-bold leading-[1.1]">Kategori Unggulan</h2>
@@ -16,7 +16,7 @@ const CategoriesHome = () => {
           Belanja koleksinya <FaArrowRight />
         </a>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 ">
         {categories.map((item) => (
           <Category key={item.label} label={item.label} icon={item.icon} />
         ))}

@@ -24,9 +24,9 @@ const NavBar = async () => {
             <div className="hidden md:block">
               <SearchBar />
             </div>
-            <div className="flex items-center gap-8 md:gap-12">
-              <Link href="/productlist">
-                <div> Produk </div>
+            <div className="flex items-center gap-8 md:gap-10">
+              <Link href="/productlist" className="text-base text-slate-800 hover:text-brown-500 hover:underline ">
+                Produk
               </Link>
               <CartCount />
               {/* Menggunakan conditional rendering untuk menampilkan UserMenu jika login ada, dan tombol Masuk dan Daftar jika tidak */}

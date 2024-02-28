@@ -2,13 +2,13 @@
 
 import React, { useCallback, useState } from 'react';
 import Avatar from '../Avatar';
-import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCaretDown, AiFillSetting } from 'react-icons/ai';
 import Link from 'next/link';
 import MenuItem from './MenuItem';
 import { signOut } from 'next-auth/react';
 import BackDrop from './BackDrop';
 import { SafeUser } from '@/types';
-import { useRouter } from 'next/navigation';
+import { FaShoppingBag, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
@@ -16,7 +16,6 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -28,18 +27,15 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         <div
           onClick={toggleOpen}
           className="
-        p-2
-        border-[1px]
+          p-2
+          border-[1px]
         border-slate-400
-        flex
-        flex-grow
-        items-center
-        gap-1
-        rounded-full
-        cursor-pointer
-        hover:shadow-md
-        transition
-        text-slate-700
+          flex
+          items-center
+          rounded-full
+          cursor-pointer
+        hover:bg-slate-100
+          transition-colors
         "
         >
           <Avatar src={currentUser?.image} />
@@ -47,36 +43,48 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         </div>
         {isOpen && (
           <div
-            className="absolute
-            rounded-md
-            shadow-md
-            w-[170px]
-            bg-white
-            overflow-hidden
-            right-0
-            top-12
-            text-sm
-            flex
-            flex-col
-            cursor-pointer"
+            className="
+            absolute
+              rounded-md
+              shadow-md
+              w-[170px]
+              bg-white
+              right-0
+              top-12
+              text-sm
+              cursor-pointer
+              overflow-hidden
+              transition-all
+              duration-300
+              transform
+              scale-y-100
+              origin-top-right
+              z-20"
           >
-            <div>
+            <div className="flex flex-col">
+              <Link href="/update-profile">
+                <MenuItem onClick={toggleOpen}>{currentUser?.email}</MenuItem>
+              </Link>
               <Link href="/orders">
-                <MenuItem onClick={toggleOpen}> Orderan anda</MenuItem>
+                <MenuItem onClick={toggleOpen}>
+                  <FaShoppingBag className="inline-block mr-2" />
+                  Orderan anda
+                </MenuItem>
               </Link>
               <Link href="/admin">
-                <MenuItem onClick={toggleOpen}> Admin Dashboard</MenuItem>
+                <MenuItem onClick={toggleOpen}>
+                  <AiFillSetting className="inline-block mr-2" />
+                  Admin Dashboard
+                </MenuItem>
               </Link>
-              <hr />
+              <hr className="my-1 border-gray-200" />
               <MenuItem
                 onClick={() => {
                   toggleOpen();
-                  signOut();
-                  router.push('/login');
+                  signOut({ callbackUrl: '/', redirect: true });
                 }}
               >
-                {' '}
-                Keluar
+                <FaSignOutAlt className="inline-block mr-2" /> Keluar
               </MenuItem>
             </div>
           </div>

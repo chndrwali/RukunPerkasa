@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import queryString from 'query-string';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = () => {
   const router = useRouter();
@@ -34,7 +35,12 @@ const SearchBar = () => {
   };
   return (
     <div className="flex items-center">
-      <input {...register('searchTerm')} autoComplete="off" type="text" placeholder="Cari kusen..." className="p-2 border border-gray-100 rounded-l-xl focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80" />
+      <div className="relative flex items-stretch w-full">
+        <input {...register('searchTerm')} autoComplete="off" type="text" placeholder="Cari kusen..." className="p-2 pl-8 border border-gray-100 rounded-l-xl focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-full" />
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <FaSearch className="text-gray-400" />
+        </div>
+      </div>
       <button onClick={handleSubmit(onSubmit)} className="bg-slate-700 hover:opacity-80 text-white p-2 rounded-r-lg">
         Cari
       </button>

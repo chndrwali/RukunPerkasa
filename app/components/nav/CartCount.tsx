@@ -9,25 +9,24 @@ const CartCount = () => {
   const router = useRouter();
 
   return (
-    <div className="relative cursor-pointer" onClick={() => router.push('/cart')}>
-      <div className="text-3xl">
+    <div className="relative cursor-pointer inline-block" onClick={() => router.push('/cart')}>
+      <div className="text-3xl text-gray-600 hover:text-gray-900 transition-colors duration-300">
         <CiShoppingCart />
       </div>
       <span
         className="
-      absolute 
-      top-[-10px] 
-      right-[10px] 
-      bg-slate-700 
-      text-white 
-      h-6 
-      w-6 
-      rounded-full
-      flex
-      items-center
-      justify-center
-      text-sm
-      "
+          absolute 
+          top-[-8px] 
+          right-[8px] 
+          bg-slate-700 
+          text-white 
+          h-6 
+          w-6 
+          rounded-full
+          flex
+          items-center
+          justify-center
+          text-sm"
       >
         {cartTotalQty}
       </span>
