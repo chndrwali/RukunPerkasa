@@ -8,6 +8,7 @@ import { useCart } from '@/hooks/useCart';
 import { Rating } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { MdCheckCircle } from 'react-icons/md';
 
 interface ProductDetailProps {
@@ -76,7 +77,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ product }) => {
 
   const handleQtyIncrease = useCallback(() => {
     if (cartProduct.quantity === 99) {
-      return;
+      return toast.error('Barang telah mencapai maksimal');
     }
 
     setCartProduct((prev) => {
@@ -85,7 +86,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ product }) => {
   }, [cartProduct]);
   const handleQtyDecrease = useCallback(() => {
     if (cartProduct.quantity === 1) {
-      return;
+      return toast.error('Barang tidak boleh kurang dari 1');
     }
 
     setCartProduct((prev) => {

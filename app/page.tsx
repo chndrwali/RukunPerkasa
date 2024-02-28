@@ -1,3 +1,4 @@
+import CategoriesHome from './components/CategoriesHome';
 import Container from './components/Container';
 import HomeBanner from './components/HomeBanner';
 import Imagine from './components/Imagine';
@@ -9,9 +10,8 @@ export default async function Home() {
         <div>
           <HomeBanner />
         </div>
-        <div>
-          <Imagine />
-        </div>
+        <CategoriesHome />
+        <Imagine />
       </Container>
     </div>
   );

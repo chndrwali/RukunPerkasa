@@ -17,7 +17,7 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   const params = useSearchParams;
   const handleClick = useCallback(() => {
     if (label === 'All') {
-      router.push('/');
+      router.push('/productlist');
     } else {
       let currentQuery = {};
 
@@ -32,7 +32,7 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
 
       const url = queryString.stringifyUrl(
         {
-          url: '/',
+          url: '/productlist',
           query: updatedQuery,
         },
         {
@@ -45,12 +45,9 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   }, [label, params, router]);
 
   return (
-    <div
-      onClick={handleClick}
-      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${selected ? 'border-b-slate-800 text-slate-800' : 'border-transparent text-slate-500'}`}
-    >
-      <Icon size={20} />
-      <div className="font-medium text-sm">{label}</div>
+    <div onClick={handleClick} className={`flex flex-col items-center justify-center p-4 border rounded-lg shadow-md cursor-pointer ${selected ? 'border-slate-800 text-slate-800' : 'border-transparent text-slate-500'}`}>
+      <Icon size={32} className={`${selected ? 'text-slate-800' : 'text-slate-500'} mb-2`} />
+      <div className="font-medium text-lg">{label}</div>
     </div>
   );
 };

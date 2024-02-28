@@ -20,8 +20,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Toaster
           toastOptions={{
             style: {
-              background: '#E5843C',
-              color: '#fff',
+              background: '#add8e6',
+              color: '#000000',
             },
           }}
         />

@@ -151,6 +151,7 @@ export const CartContextProvider = (props: Props) => {
     setCartTotalQty(0);
 
     localStorage.setItem('eShopCartItems', JSON.stringify(null));
+    toast.success('Semua produk di hapus');
   }, [cartProducts]);
 
   const handleSetPaymentIntent = useCallback(
