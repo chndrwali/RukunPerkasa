@@ -7,7 +7,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
 
   if (!currentUser) return NextResponse.error();
 
-  if (currentUser.role === 'ADMIN') {
+  if (currentUser.role !== 'ADMIN') {
     return NextResponse.error();
   }
 

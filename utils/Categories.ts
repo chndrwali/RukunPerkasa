@@ -26,8 +26,4 @@ export const categories = [
     label: 'Risbang',
     icon: FaBed,
   },
-  {
-    label: 'Mentahan Kayu',
-    icon: FaTree,
-  },
 ];

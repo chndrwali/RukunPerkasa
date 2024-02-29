@@ -16,7 +16,7 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   const router = useRouter();
   const params = useSearchParams;
   const handleClick = useCallback(() => {
-    if (label === 'All') {
+    if (label === 'Semua') {
       router.push('/productlist');
     } else {
       let currentQuery = {};
