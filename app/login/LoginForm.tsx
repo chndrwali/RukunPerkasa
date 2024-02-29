@@ -61,32 +61,64 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
     return <p className="text-center">Sudah login. tunggu sebentar...</p>;
   }
   return (
-    <>
-      <Heading center title="Masuk" />
-      <hr className="bg-slate-300 w-full h-[px]" />
+    <div className="max-w-xl lg:max-w-3xl">
+      <h1 className="mt-4 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">Masuk</h1>
 
-      <Input id="email" label="Masukan Email" disabled={isLoading} register={register} errors={errors} required />
-      <Input id="password" label="Masukan Password" disabled={isLoading} register={register} errors={errors} required type="password" />
-      <a href="#" className="justify-self-end text-xs text-gray-500 hover:underline">
-        Lupa Password?
-      </a>
-      <Button label={isLoading ? 'Mengirim data...' : 'Masuk'} onClick={handleSubmit(onSubmit)} />
-      <p className="text-center text-slate-500">atau</p>
-      <Button
-        outline
-        label="Masuk dengan Google"
-        onClick={() => {
-          signIn('google');
-        }}
-        icon={AiOutlineGoogle}
-      />
-      <p className="text-sm text-slate-500 text-center">
-        Belum punya akun?{' '}
-        <Link href="/register" className="text-blue-500 font-semibold  hover:underline">
-          Daftar sekarang
-        </Link>
-      </p>
-    </>
+      <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+        <div className="col-span-6">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            {' '}
+            Email{' '}
+          </label>
+
+          <Input id="email" label="Alamat Email" disabled={isLoading} register={register} errors={errors} required />
+          <label htmlFor="email" className="block text-xs font-medium text-gray-400">
+            Gunakan alamat email aktif Anda
+          </label>
+        </div>
+
+        <div className="col-span-6">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            {' '}
+            Password{' '}
+          </label>
+
+          <Input id="password" label="Masukan Password" disabled={isLoading} register={register} errors={errors} required type="password" />
+          <label htmlFor="password" className="block text-xs font-medium text-gray-400">
+            Gunakan minimal 8 karakter dengan kombinasi huruf dan angka
+          </label>
+        </div>
+
+        <div className="col-span-6">
+          <div className="mb-4">
+            {' '}
+            <Button label={isLoading ? 'Mengirim data...' : 'Masuk'} onClick={handleSubmit(onSubmit)} />
+          </div>
+          <p className="text-center relative text-slate-500">
+            <span className="relative z-10 bg-white px-4">atau</span>
+            <span className="absolute left-0 right-0 top-1/2 h-[1px] bg-slate-300 z-0"></span> {/* Garis atas */}
+            <span className="absolute left-0 right-0 bottom-1/2 h-[1px] bg-slate-300 z-0"></span> {/* Garis bawah */}
+          </p>
+          <div className="mt-4">
+            {' '}
+            <Button
+              outline
+              label="Masuk dengan Google"
+              onClick={() => {
+                signIn('google');
+              }}
+              icon={AiOutlineGoogle}
+            />
+          </div>
+          <p className="text-sm text-center mt-2">
+            Belum punya akun?{' '}
+            <Link href="/register" className="text-blue-500 font-semibold hover:underline hover:text-blue-500">
+              Daftar sekarang
+            </Link>
+          </p>
+        </div>
+      </form>
+    </div>
   );
 };
 

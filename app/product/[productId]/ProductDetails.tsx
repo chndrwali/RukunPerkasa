@@ -5,6 +5,7 @@ import ProductImage from '@/app/components/products/ProductImage';
 import SetColor from '@/app/components/products/SetColor';
 import SetQuantity from '@/app/components/products/SetQuantity';
 import { useCart } from '@/hooks/useCart';
+import { formatPrice } from '@/utils/formatPrice';
 import { Rating } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
@@ -111,15 +112,19 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ product }) => {
           {product.category}
         </div>
         <div>
-          <span className="font-semibold">BRAND: </span>
+          <span className="font-semibold">TIPE KAYU: </span>
           {product.brand}
         </div>
-        <div className={product.inStock ? 'text-teal-400' : 'text-rose-400'}> {product.inStock ? 'Stok tersedia' : 'Yahh stok nya habis :('}</div>
+        <div className="font-bold">
+          <span className="font-semibold">HARGA: </span>
+          {formatPrice(product.price)}
+        </div>
+        <div className={product.inStock ? 'text-green-500' : 'text-rose-500'}> {product.inStock ? 'Stok tersedia' : 'Yahh stok nya habis :('}</div>
         <Horizontal />
         {isProductInCart ? (
           <>
             <p className="mb-2 text-slate-500 flex items-center gap-1">
-              <MdCheckCircle className="text-teal-400" size={20} />
+              <MdCheckCircle className="text-green-500" size={20} />
               <span> Produk telah di tambahkan ke keranjang.</span>
             </p>
             <div className="max-w-[300px]">

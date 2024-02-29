@@ -23,7 +23,7 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
       <div className="flex flex-col items-center min-h-screen">
         <div className="text-2xl">Keranjang kamu kosong</div>
         <div>
-          <Link href={'/'} className="text-slate-500 flex items-center gap-1 mt-2 ">
+          <Link href={'/productlist'} className="text-slate-500 flex items-center gap-1 mt-2 hover:translate-x-1 hover:text-brown-600 transition-all ">
             <MdArrowBack />
             <span>Belanja sekarang</span>
           </Link>

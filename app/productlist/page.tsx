@@ -4,6 +4,7 @@ import NullData from '../components/NullData';
 import ProductCard from '../components/products/ProductCard';
 import getProducts, { IProductParams } from '@/actions/getProducts';
 import Categories from '../components/nav/Categories';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface ProductListProps {
   searchParams: IProductParams;
@@ -29,6 +30,9 @@ export default async function ProductList({ searchParams }: ProductListProps) {
 
   return (
     <div className="p-8 min-h-screen">
+      <a href="/" className="hidden md:flex gap-1 text-brown-700 hover:translate-x-1 hover:text-brown-600 transition-all">
+        <FaArrowLeft /> Kembali ke beranda
+      </a>
       <Container>
         <Categories />
         <section className="space-y-8 px-4 sm:px-6 lg:px-8 py-8 md:pt-10  sm:pb-28">

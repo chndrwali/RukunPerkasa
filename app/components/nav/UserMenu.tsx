@@ -34,7 +34,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           items-center
           rounded-full
           cursor-pointer
-        hover:bg-slate-100
+        hover:bg-slate-200
           transition-colors
         "
         >
@@ -84,7 +84,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   signOut({ callbackUrl: '/', redirect: true });
                 }}
               >
-                <FaSignOutAlt className="inline-block mr-2" /> Keluar
+                <FaSignOutAlt className="inline-block mr-2 text-red-500" />
+                <span className="text-red-500">Keluar</span>
               </MenuItem>
             </div>
           </div>
