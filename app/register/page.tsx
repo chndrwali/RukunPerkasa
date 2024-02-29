@@ -2,17 +2,22 @@ import getCurrentUser from '@/actions/getCurrentUser';
 import Container from '../components/Container';
 import RegisterForm from './RegisterForm';
 import { image } from '@/utils/footer';
+import Image from 'next/image';
 
 const Register = async () => {
   const currentUser = await getCurrentUser();
   return (
     <Container>
-      <div className="flex flex-col lg:flex-row w-full min-h-fit h-full  mb-4 border border-brown-500 mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
-        <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${image.signup})` }}></div>
-        <div className="w-full lg:w-1/2 px-6 py-8 md:px-8">
-          <RegisterForm currentUser={currentUser} />
+      <section className="bg-white rounded-lg border border-brown-500 mb-6 mt-6">
+        <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+          <aside className="hidden relative md:block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
+            <Image src={image.signup} fill alt="Image signup" className="absolute inset-0 h-full w-full object-cover" />
+          </aside>
+          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+            <RegisterForm currentUser={currentUser} />
+          </main>
         </div>
-      </div>
+      </section>
     </Container>
   );
 };
