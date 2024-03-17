@@ -4,15 +4,62 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Running Locally
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/chndrwali/RukunPerkasa.git
+   ```
+
+2. Install dependencies using npm
+
+   ```bash
+   npm install
+   ```
+
+3. Copy the `.env.example` to `.env` and update the variables.
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Configure your .env file with your secret
+
+   ```env
+   DATABASE_URL = "mongodb+srv://chndrwali:chndrwali@cluster0.t8ibdaq.mongodb.net/rukunperkasa"
+    NEXTAUTH_SECRET=
+    GOOGLE_CLIENT_ID=
+    GOOGLE_CLIENT_SECRET=
+    STRIPE_SECRET_KEY=
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+    STRIPE_WEBHOOK_SECRET=
+   ```
+
+5. Generate prisma client
+
+   ```bash
+   npx prisma generate
+   ```
+
+6. Push the database schema
+
+   ```bash
+   npx prisma db push
+   ```
+
+7. Start the development server
+
+   ```bash
+   npm run dev
+   ```
+
+8. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Where do I deploy this?
+
+- For the Nextjs application, I deploy it on [Vercel](https://vercel.com/)
+- And for the NoSQL database I deploy it on [MongoDB Atlas](https://www.mongodb.com/)
 
 # Tools and Frameworks Used in This Project
 
