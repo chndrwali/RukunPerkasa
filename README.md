@@ -27,7 +27,7 @@ First, run the development server:
 4. Configure your .env file with your secret
 
    ```env
-   DATABASE_URL = "mongodb+srv://chndrwali:chndrwali@cluster0.t8ibdaq.mongodb.net/rukunperkasa"
+   DATABASE_URL =
     NEXTAUTH_SECRET=
     GOOGLE_CLIENT_ID=
     GOOGLE_CLIENT_SECRET=
