@@ -25,6 +25,7 @@ export type CartProductType = {
   selectedImg: SelectedImgType;
   quantity: number;
   price: number;
+  inStock: boolean;
 };
 
 export type SelectedImgType = {
@@ -50,6 +51,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ product }) => {
     selectedImg: { ...product.images[0] },
     quantity: 1,
     price: product.price,
+    inStock: product.inStock,
   });
 
   const router = useRouter();
@@ -96,7 +98,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ product }) => {
   }, [cartProduct]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
+    <div className="grid grid-cols-1 md:grid-cols-2  p-6">
       <ProductImage cartProduct={cartProduct} product={product} handleColorSelect={handleColorSelect} />
       <div className="flex flex-col gap-1 text-slate-500">
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>

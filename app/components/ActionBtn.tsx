@@ -1,4 +1,5 @@
 import { IconType } from 'react-icons';
+import { motion } from 'framer-motion';
 
 interface ActionBtnProps {
   icon: IconType;
@@ -8,7 +9,7 @@ interface ActionBtnProps {
 
 const ActionBtn: React.FC<ActionBtnProps> = ({ icon: Icon, onClick, disabled }) => {
   return (
-    <button
+    <motion.button
       onClick={onClick}
       disabled={disabled}
       className={`
@@ -25,9 +26,11 @@ const ActionBtn: React.FC<ActionBtnProps> = ({ icon: Icon, onClick, disabled }) 
     ${disabled && 'opacity-50 cursor-not-allowed'}
     
     `}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
     >
       <Icon size={18} />
-    </button>
+    </motion.button>
   );
 };
 

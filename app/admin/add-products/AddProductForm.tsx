@@ -1,7 +1,6 @@
 'use client';
 
 import Button from '@/app/components/Button';
-import Heading from '@/app/components/Heading';
 import CategoryInput from '@/app/components/inputs/CategoryInput';
 import CustomCheckBox from '@/app/components/inputs/CustomCheckBox';
 import Input from '@/app/components/inputs/Input';
@@ -75,7 +74,7 @@ const AddProductForm = () => {
       return toast.error('Kategory tidak di pilih');
     }
 
-    if (!data.images || data.images.length === 0) {
+    if (!data.images) {
       setIsLoading(false);
       return toast.error('Gambar tidak di pilih');
     }
@@ -167,8 +166,9 @@ const AddProductForm = () => {
     setImages((prev) => {
       if (!prev) {
         return [value];
+      } else {
+        return [...prev, value];
       }
-      return { ...prev, value };
     });
   }, []);
 
@@ -185,39 +185,55 @@ const AddProductForm = () => {
 
   return (
     <>
-      <Heading title="Tambahkan Produk" center />
-      <Input id="name" label="Nama Produk" disabled={isLoading} register={register} errors={errors} required />
-      <Input id="price" label="Harga Produk" disabled={isLoading} register={register} errors={errors} type="number" required />
-      <Input id="brand" label="Tipe Kayu" disabled={isLoading} register={register} errors={errors} required />
-      <TextArea id="description" label="Deskripsi Produk" disabled={isLoading} register={register} errors={errors} required />
-      <CustomCheckBox id="inStock" register={register} label="Produk tersedia" />
-      <div className="w-full font-medium">
-        <div className="mb-2 font-semibold">Pilih kategori</div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
-          {categories.map((item) => {
-            if (item.label === 'Semua') {
-              return null;
-            }
-            return (
-              <div key={item.label} className="col-span">
-                <CategoryInput onClick={(category) => setCustomValue('category', category)} selected={category === item.label} label={item.label} icon={item.icon} />
-              </div>
-            );
-          })}
-        </div>
+      <div className="px-4 py-3 mb-8 bg-slate-50 rounded-lg shadow-xl">
+        <label htmlFor="name" className="block text-sm mb-4">
+          <span className="text-gray-700">Nama Produk</span>
+          <Input id="name" label="Nama Produk" disabled={isLoading} register={register} errors={errors} required />
+        </label>
+        <label htmlFor="price" className="block text-sm mb-4">
+          <span className="text-gray-700">Harga Produk</span>
+          <Input id="price" label="Harga Produk" disabled={isLoading} register={register} errors={errors} type="number" required />
+        </label>
+        <label htmlFor="brand" className="block text-sm mb-4">
+          <span className="text-gray-700">Tipe Kayu</span>
+          <Input id="brand" label="Tipe Kayu" disabled={isLoading} register={register} errors={errors} required />
+        </label>
+        <label htmlFor="description" className="block text-sm mb-4">
+          <span className="text-gray-700">Deskripsi Produk</span>
+          <TextArea id="description" label="Deskripsi Produk" disabled={isLoading} register={register} errors={errors} required />
+        </label>
+        <CustomCheckBox id="inStock" register={register} label="Produk tersedia" />
       </div>
-      <div className="w-full flex flex-col flex-wrap gap-4">
-        <div>
-          <div className="font-bold">Pilih warna produk yang tersedia dan unggah gambarnya</div>
-          <div className="text-sm">Anda paling banyak mengunggah gambar untuk setiap warna yang dipilih jika tidak, pemilihan warna Anda akan diabaikan</div>
+      <div className="px-4 py-3 mb-8 bg-slate-50 rounded-lg shadow-xl">
+        <div className="w-full font-medium">
+          <div className="mb-2 font-semibold">Pilih kategori</div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
+            {categories.map((item) => {
+              if (item.label === 'Semua') {
+                return null;
+              }
+              return (
+                <div key={item.label} className="col-span">
+                  <CategoryInput onClick={(category) => setCustomValue('category', category)} selected={category === item.label} label={item.label} icon={item.icon} />
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          {colors.map((item, index) => {
-            return <SelectColor key={index} item={item} addImageToState={addImageToState} removeImageFromState={removeImageFromState} isProductCreated={isProductCreated} />;
-          })}
+        <div className="w-full flex flex-col flex-wrap gap-4">
+          <div>
+            <div className="font-bold">Pilih warna produk yang tersedia dan unggah gambarnya</div>
+            <div className="text-sm">Anda paling banyak mengunggah gambar untuk setiap warna yang dipilih jika tidak, pemilihan warna Anda akan diabaikan</div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {colors.map((item, index) => {
+              return <SelectColor key={index} item={item} addImageToState={addImageToState} removeImageFromState={removeImageFromState} isProductCreated={isProductCreated} />;
+            })}
+          </div>
         </div>
+
+        <Button label={isLoading ? 'Mengirim produk..' : 'Tambah Produk'} onClick={handleSubmit(onSubmit)} />
       </div>
-      <Button label={isLoading ? 'Mengirim produk..' : 'Tambah Produk'} onClick={handleSubmit(onSubmit)} />
     </>
   );
 };

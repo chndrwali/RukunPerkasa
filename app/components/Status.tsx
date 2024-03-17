@@ -18,6 +18,7 @@ const Status: React.FC<StatusProps> = ({ text, icon: Icon, bg, color }) => {
       flex
       items-center
       gap-1  
+     
     `}
     >
       {text} <Icon size={15} />

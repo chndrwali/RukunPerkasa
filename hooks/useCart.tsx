@@ -67,6 +67,11 @@ export const CartContextProvider = (props: Props) => {
   }, [cartProducts]);
 
   const handleAddProductToCart = useCallback((product: CartProductType) => {
+    if (!product.inStock) {
+      toast.error('Maaf, produk ini saat ini tidak tersedia');
+      return;
+    }
+
     setCartProducts((prev) => {
       let updatedCart;
 

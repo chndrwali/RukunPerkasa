@@ -16,8 +16,8 @@ const Footer = () => {
             <div className="w-full -mx-6 lg:w-2/5">
               <div className="px-6">
                 <Link href="/" className={`${redressed.className} flex items-center space-x-3 font-bold text-2xl`}>
-                  <Image src="/logo/rukunperkasa.png" width={44} height={44} className="h-11 w-11" alt="Rukun Perkasa Logo" />
-                  <span className="self-center whitespace-nowrap text-brown-500">{footer.brand}</span>
+                  <Image src="/logo/rukunperkasa.png" width={44} height={44} priority={true} className="h-11 w-11" alt="Rukun Perkasa Logo" />
+                  <span className="self-center whitespace-nowrap text-brown-200">{footer.brand}</span>
                 </Link>
 
                 <p className="max-w-sm mt-2 text-gray-50">{footer.SEO}</p>

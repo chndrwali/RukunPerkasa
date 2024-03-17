@@ -5,6 +5,14 @@ import { useEffect, useState } from 'react';
 import Heading from '../components/Heading';
 import { formatPrice } from '@/utils/formatPrice';
 import { formatNumber } from '@/utils/formatNumber';
+import { CiDollar } from 'react-icons/ci';
+import { IconType } from 'react-icons';
+import { FaBox } from 'react-icons/fa';
+import { BiShoppingBag } from 'react-icons/bi';
+import { BsCheckCircle } from 'react-icons/bs';
+import { AiOutlineUser } from 'react-icons/ai';
+import SummaryCardItem from '../components/admin/SummaryCardItem';
+import { MdClose } from 'react-icons/md';
 
 interface SummaryProps {
   orders: Order[];
@@ -16,6 +24,9 @@ type SummaryDataType = {
   [key: string]: {
     label: string;
     digit: number;
+    icon: IconType;
+    color: string;
+    textcolor: string;
   };
 };
 
@@ -24,26 +35,44 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
     sale: {
       label: 'Total Pendapatan',
       digit: 0,
+      icon: CiDollar,
+      color: 'bg-green-100',
+      textcolor: 'text-green-500',
     },
     products: {
       label: 'Total Produk',
       digit: 0,
+      icon: FaBox,
+      color: 'bg-blue-100',
+      textcolor: 'text-blue-500',
     },
     orders: {
       label: 'Total Order',
       digit: 0,
+      icon: BiShoppingBag,
+      color: 'bg-orange-100',
+      textcolor: 'text-orange-500',
     },
     paidOrders: {
-      label: 'Order sudah bayar',
+      label: 'Sudah bayar',
       digit: 0,
+      icon: BsCheckCircle,
+      color: 'bg-teal-100',
+      textcolor: 'text-teal-500',
     },
     unpaidOrders: {
-      label: 'Order belum bayar',
+      label: 'Belum bayar',
       digit: 0,
+      icon: MdClose,
+      color: 'bg-rose-100',
+      textcolor: 'text-rose-500',
     },
     users: {
       label: 'Total pengguna',
       digit: 0,
+      icon: AiOutlineUser,
+      color: 'bg-blue-100',
+      textcolor: 'text-blue-500',
     },
   });
 
@@ -79,21 +108,12 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   const summaryKeys = Object.keys(summaryData);
 
   return (
-    <div className="max-w-[1150px] m-auto ">
-      <div className="mb-4 mt-8">
-        <Heading title="Statistik Rukun Perkasa" center />
-      </div>
-      <div className="grid grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
-        {summaryKeys &&
-          summaryKeys.map((key) => {
-            return (
-              <div key={key} className="rounded-xl border-2 p-4 flex flex-col items-center gap-2 transition">
-                <div className="text-xl md:text-4xl font-bold ">{summaryData[key].label === 'Total Pendapatan' ? <>{formatPrice(summaryData[key].digit / 100)}</> : <>{formatNumber(summaryData[key].digit)}</>}</div>
-                <div>{summaryData[key].label}</div>
-              </div>
-            );
-          })}
-      </div>
+    <div className="grid gap-6 mt-4 mb-8 md:grid-cols-2 xl:grid-cols-3">
+      {summaryKeys &&
+        summaryKeys.map((key) => {
+          const { label, digit, icon, color, textcolor } = summaryData[key];
+          return <SummaryCardItem key={key} color={color} textcolor={textcolor} icon={icon} desc={label} number={label === 'Total Pendapatan' ? formatPrice(digit / 100) : formatNumber(digit)} />;
+        })}
     </div>
   );
 };

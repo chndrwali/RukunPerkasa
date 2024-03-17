@@ -32,7 +32,7 @@ const ProductImage: React.FC<ProductImageProps> = ({ cartProduct, product, handl
         })}
       </div>
       <div className="col-span-5 relative aspect-square">
-        <Image fill src={cartProduct.selectedImg.image} alt={cartProduct.name} className="w-full h-full object-contain  max-h-[500px] min-h-[300px]sm:min-h[400px]  " />
+        <Image fill src={cartProduct.selectedImg.image} alt={cartProduct.name} className="w-full h-full object-contain p-4 max-h-[500px] min-h-[300px] sm:min-h[400px]  " />
       </div>
     </div>
   );

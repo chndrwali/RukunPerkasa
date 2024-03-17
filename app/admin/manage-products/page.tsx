@@ -1,4 +1,3 @@
-import Container from '@/app/components/Container';
 import ManageProductsClient from './ManageProductsClient';
 import getProducts from '@/actions/getProducts';
 import getCurrentUser from '@/actions/getCurrentUser';
@@ -9,14 +8,15 @@ const ManageProducts = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser || currentUser.role !== 'ADMIN') {
-    return <NullData title="Ups! akses di tolak" />;
+    return <NullData title="Akses di tolak" href="/" subtitle="Kembali ke Halaman Utama" />;
   }
   return (
-    <div className="pt-8">
-      <Container>
+    <main className="h-full pb-16 overflow-y-auto">
+      <div className="container grid px-6 mx-auto">
+        <h2 className="my-6 text-2xl font-semibold text-center text-gray-700">Kelola Produk</h2>
         <ManageProductsClient products={products} />
-      </Container>
-    </div>
+      </div>
+    </main>
   );
 };
 

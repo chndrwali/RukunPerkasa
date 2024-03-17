@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import CheckoutForm from './CheckoutForm';
 import Button from '../components/Button';
+import { Alert, CircularProgress } from '@mui/material';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
@@ -74,11 +75,22 @@ const CheckoutClient = () => {
           <CheckoutForm clientSecret={clientSecret} handleSetPaymentSuccess={handleSetPaymentSuccess} />
         </Elements>
       )}
-      {loading && <div className="text-center"> Proses Checkout... </div>}
-      {error && <div className="text-center text-rose-500"> Ada yang salah</div>}
+      {loading && (
+        <div className="flex flex-col justify-center items-center h-full">
+          <CircularProgress color="primary" />
+          <p className="text-center">Proses Checkout...</p>;
+        </div>
+      )}
+      {error && (
+        <Alert variant="filled" severity="error">
+          Ada yang salah
+        </Alert>
+      )}
       {paymentSuccess && (
         <div className="flex items-center flex-col gap-4">
-          <div className="text-teal-500 text-center">Pembayaran berhasil</div>
+          <Alert variant="filled" severity="success">
+            Pembayaran Berhasil
+          </Alert>
           <div className="max-w-[220px] w-full">
             <Button label="Lihat Orderan Anda" onClick={() => router.push('/orders')} />
           </div>

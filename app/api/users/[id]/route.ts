@@ -26,3 +26,35 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     return NextResponse.error();
   }
 }
+
+export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) {
+      return NextResponse.error();
+    }
+
+    const userId = params.id;
+
+    // Cek apakah pengguna yang akan dihapus ada dalam database
+    const existingUser = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!existingUser) {
+      return NextResponse.error();
+    }
+
+    // Hapus pengguna
+    await prisma.user.delete({
+      where: { id: userId },
+    });
+
+    return NextResponse.json({ message: 'User deleted successfully' }, { status: 200 });
+  } catch (error) {
+    console.error('Failed to delete user:', error);
+
+    return NextResponse.error();
+  }
+}

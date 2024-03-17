@@ -1,7 +1,7 @@
 'use client';
 
 import { categories } from '@/utils/Categories';
-import Category from '../components/nav/Category';
+import Category from '../productlist/Category';
 import { FaArrowRight } from 'react-icons/fa';
 
 const CategoriesHome = () => {
@@ -16,7 +16,7 @@ const CategoriesHome = () => {
           Belanja koleksinya <FaArrowRight />
         </a>
       </div>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 ">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3  ">
         {categories.map((item) => (
           <Category key={item.label} label={item.label} icon={item.icon} />
         ))}

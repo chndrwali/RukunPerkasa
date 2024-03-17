@@ -1,7 +1,7 @@
 export const footer = {
   brand: 'Rukun Perkasa',
   copy: 'Rukun Perkasa | All rights reserved.',
-  SEO: 'Bergabunglah dengan lebih dari 5.000 orang lainnya dan jangan pernah lewatkan produk kusen baru, furniture, dan lainnya.',
+  SEO: 'Bergabunglah dengan lebih dari 5.000+ orang lainnya dan jangan pernah lewatkan produk kusen baru, furniture, dan lainnya.',
   about: {
     title: 'Tentang Kami',
     company: 'Company',

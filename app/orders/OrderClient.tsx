@@ -1,14 +1,13 @@
 'use client';
 
 import { Order, User } from '@prisma/client';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { formatPrice } from '@/utils/formatPrice';
 import Heading from '@/app/components/Heading';
 import Status from '@/app/components/Status';
-import { MdAccessTimeFilled, MdDeliveryDining, MdDone, MdRemoveRedEye } from 'react-icons/md';
-import ActionBtn from '@/app/components/ActionBtn';
+import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
+import { FaHistory } from 'react-icons/fa';
 
 interface OrdersClientProps {
   orders: ExtendedOrder[];
@@ -20,114 +19,52 @@ type ExtendedOrder = Order & {
 
 const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   const router = useRouter();
-  let rows: any = [];
-
-  if (orders) {
-    rows = orders.map((order) => {
-      return {
-        id: order.id,
-        customer: order.user.name,
-        amount: formatPrice(order.amount / 100),
-        paymentStatus: order.status,
-        date: moment(order.createDate).format('DD/MM/YYYY'),
-        deliveryStatus: order.deliveryStatus,
-      };
-    });
-  }
-
-  const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 220 },
-    { field: 'customer', headerName: 'Nama Customer', width: 130 },
-    {
-      field: 'amount',
-      headerName: 'Harga Produk',
-      width: 220,
-      renderCell: (params) => {
-        return <div className="font-bold text-slate">{params.row.amount}</div>;
-      },
-    },
-    {
-      field: 'paymentStatus',
-      headerName: 'Status Pembayaran',
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <div>
-            {params.row.paymentStatus === 'pending' ? (
-              <Status text="Belum Bayar" icon={MdAccessTimeFilled} bg="bg-slate-200" color="text-slate-700" />
-            ) : params.row.paymentStatus === 'complete' ? (
-              <Status text="Sudah Bayar" icon={MdDone} bg="bg-green-200" color="text-green-700" />
-            ) : (
-              <></>
-            )}
-          </div>
-        );
-      },
-    },
-    {
-      field: 'deliveryStatus',
-      headerName: 'Status Pengiriman',
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <div>
-            {params.row.deliveryStatus === 'pending' ? (
-              <Status text="Pending" icon={MdAccessTimeFilled} bg="bg-slate-200" color="text-slate-700" />
-            ) : params.row.deliveryStatus === 'dispatched' ? (
-              <Status text="Sedang dikirim" icon={MdDeliveryDining} bg="bg-purple-200" color="text-purple-700" />
-            ) : params.row.deliveryStatus === 'delivered' ? (
-              <Status text="Terkirim" icon={MdDone} bg="bg-green-200" color="text-green-700" />
-            ) : (
-              <></>
-            )}
-          </div>
-        );
-      },
-    },
-    {
-      field: 'date',
-      headerName: 'Tanggal',
-      width: 130,
-    },
-
-    {
-      field: 'action',
-      headerName: 'Aksi',
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="flex justify-between gap-4 w-full">
-            <ActionBtn
-              icon={MdRemoveRedEye}
-              onClick={() => {
-                router.push(`/order/${params.row.id}`);
-              }}
-            />
-          </div>
-        );
-      },
-    },
-  ];
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl">
-      <div className="mb-4 mt-8">
-        <Heading title="Riwayat Pesanan" center />
+    <div className="max-w-4xl mx-auto mt-8">
+      <div className="text-center">
+        <Heading title="Orderan Anda" center />
+        <p className="text-gray-500 ">Lihat riwayat transaksi anda</p>
       </div>
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 9 },
-            },
-          }}
-          pageSizeOptions={[9, 20]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
-      </div>
+
+      {orders.map((order) => (
+        <div key={order.id} className="mb-6 p-3 sm:py-4 sm:px-6 shadow-md border hover:shadow-lg duration-300 transition-all rounded-xl space-y-4 h-full">
+          <div className="flex items-center mt-2 gap-2">
+            <span className="text-gray-600 font-semibold">ID Pesanan:</span> {order.id}
+          </div>
+          <div className="flex items-center mt-2 gap-2">
+            <span className="text-gray-600 font-semibold">Tanggal:</span> {moment(order.createDate).format('DD/MM/YYYY')}
+          </div>
+          <div className="flex items-center mt-2 gap-2">
+            <span className="text-gray-700 font-semibold">Nama Customer:</span> {order.user.name}
+          </div>
+          <div className="flex items-center mt-2 gap-2">
+            <span className="text-gray-700 font-semibold">Harga Produk:</span> {formatPrice(order.amount / 100)}
+          </div>
+          <div className="flex items-center mt-2">
+            <span className="mr-2 font-semibold ">Status Pembayaran:</span>
+            <Status
+              text={order.status === 'pending' ? 'Belum Bayar' : 'Sudah Bayar'}
+              icon={order.status === 'pending' ? MdAccessTimeFilled : MdDone}
+              bg={order.status === 'pending' ? 'bg-slate-200' : 'bg-green-200'}
+              color={order.status === 'pending' ? 'text-slate-700' : 'text-green-700'}
+            />
+          </div>
+          <div className="flex items-center mt-2">
+            <span className="mr-2 font-semibold">Status Pengiriman:</span>
+            <Status
+              text={order.deliveryStatus === 'pending' ? 'Pending' : order.deliveryStatus === 'dispatched' ? 'Sedang Dikirim' : 'Terkirim'}
+              icon={order.deliveryStatus === 'pending' ? MdAccessTimeFilled : order.deliveryStatus === 'dispatched' ? MdDeliveryDining : MdDone}
+              bg={order.deliveryStatus === 'pending' ? 'bg-slate-200' : order.deliveryStatus === 'dispatched' ? 'bg-purple-200' : 'bg-green-200'}
+              color={order.deliveryStatus === 'pending' ? 'text-slate-700' : order.deliveryStatus === 'dispatched' ? 'text-purple-700' : 'text-green-700'}
+            />
+          </div>
+          <hr className="my-4 " />
+          <button className=" sm:text-xl text-orange-500 hover:text-orange-700 hover:underline" onClick={() => router.push(`/order/${order.id}`)}>
+            Lihat Detail Pesanan
+          </button>
+        </div>
+      ))}
     </div>
   );
 };

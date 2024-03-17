@@ -20,12 +20,12 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
-      <div className="flex flex-col items-center min-h-screen">
-        <div className="text-2xl">Keranjang kamu kosong</div>
+      <div className="flex flex-col items-center mt-8 min-h-screen">
+        <div className="text-2xl text-rose-400 mt-4">Keranjang kamu kosong</div>
         <div>
-          <Link href={'/productlist'} className="text-slate-500 flex items-center gap-1 mt-2 hover:translate-x-1 hover:text-brown-600 transition-all ">
+          <Link href="/productlist" className="text-slate-500 flex items-center gap-1 mt-2 hover:translate-x-1 hover:text-brown-600 transition-all ">
             <MdArrowBack />
-            <span>Belanja sekarang</span>
+            <span>Belanja sekarang, yuk!</span>
           </Link>
         </div>
       </div>
@@ -33,48 +33,62 @@ const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
   }
 
   return (
-    <div className="min-h-screen">
-      <Heading title="Keranjang Belanja" center />
-      <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center mt-8">
-        <div className="col-span-2 justify-self-start">PRODUK</div>
-        <div className="justify-self-center">HARGA</div>
-        <div className="justify-self-center">JUMLAH</div>
-        <div className="justify-self-end">TOTAL</div>
-      </div>
-      <div>
-        {cartProducts &&
-          cartProducts.map((item) => {
-            return <ItemContent key={item.id} item={item} />;
-          })}
-      </div>
-      <div className="border-t[1.5px] border-slate-200 py-4 flex justify-between gap-4">
-        <div className="w-[150px]">
-          <Button
-            label="Bersihkan Keranjang"
-            small
-            outline
-            onClick={() => {
-              handleClearCart();
-            }}
-          />
-        </div>
-        <div className="text-sm flex flex-col gap-1 items-start">
-          <div className="flex justify-between w-full text-base font-semibold">
-            <span>Total Harga</span>
-            <span>{formatPrice(cartTotalAmount)}</span>
+    <div className="min-h-screen py-8">
+      <div className="container mx-auto px-4">
+        <Heading title="Keranjang Belanja" center />
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="md:w-3/4">
+            <div className="bg-white rounded-lg shadow-md p-6 mb-4 overflow-x-auto">
+              <table className="w-full divide-y-2 divide-gray-200  text-sm">
+                <thead>
+                  <tr>
+                    <th className="text-left whitespace-nowrap px-4 py-2 font-semibold text-gray-900">Produk</th>
+                    <th className="text-left whitespace-nowrap px-4 py-2 font-semibold text-gray-900">Harga</th>
+                    <th className="text-left whitespace-nowrap px-4 py-2 font-semibold text-gray-900">Jumlah</th>
+                    <th className="text-left whitespace-nowrap px-4 py-2 font-semibold text-gray-900">Total</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {cartProducts &&
+                    cartProducts.map((item) => {
+                      return <ItemContent key={item.id} item={item} />;
+                    })}
+                </tbody>
+              </table>
+              <div className="w-[150px]">
+                <Button
+                  label="Bersihkan Keranjang"
+                  small
+                  outline
+                  onClick={() => {
+                    handleClearCart();
+                  }}
+                />
+              </div>
+            </div>
           </div>
-          <p className="text-slate-500">Pajak dan pengiriman dihitung saat checkout</p>
-          <Button
-            label={currentUser ? 'Checkout' : 'Masuk untuk Checkout'}
-            outline={currentUser ? false : true}
-            onClick={() => {
-              currentUser ? router.push('/checkout') : router.push('/login');
-            }}
-          />
-          <Link href={'/'} className="text-slate-500 flex items-center gap-1 mt-2 ">
-            <MdArrowBack />
-            <span>Lanjut belanja</span>
-          </Link>
+          <div className="md:w-1/4">
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="text-sm flex flex-col gap-1 items-start">
+                <div className="flex justify-between w-full text-base font-semibold">
+                  <span>Total Harga</span>
+                  <span>{formatPrice(cartTotalAmount)}</span>
+                </div>
+                <p className="text-slate-500 mb-2">Pajak dan pengiriman dihitung saat checkout</p>
+                <Button
+                  label={currentUser ? 'Checkout' : 'Masuk untuk Checkout'}
+                  outline={currentUser ? false : true}
+                  onClick={() => {
+                    currentUser ? router.push('/checkout') : router.push('/login');
+                  }}
+                />
+                <Link href={'/productlist'} className="text-slate-500 flex items-center gap-1 mt-2 hover:text-slate-800 hover:underline">
+                  <MdArrowBack />
+                  <span>Lanjut belanja</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

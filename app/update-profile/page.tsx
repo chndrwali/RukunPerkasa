@@ -1,16 +1,18 @@
 import getCurrentUser from '@/actions/getCurrentUser';
-import Container from '../components/Container';
-import FormWrap from '../components/FormWrap';
 import UpdateProfileForm from './UpdateProfileForm';
+import SideMenuProfile from './SideMenuProfile';
+import FormWrapUpdate from './FormWrapUpdate';
 
 const UpdateProfile = async () => {
   const currentUser = await getCurrentUser();
+
   return (
-    <Container>
-      <FormWrap>
+    <div className="flex">
+      <SideMenuProfile />
+      <FormWrapUpdate>
         <UpdateProfileForm currentUser={currentUser} />
-      </FormWrap>
-    </Container>
+      </FormWrapUpdate>
+    </div>
   );
 };
 

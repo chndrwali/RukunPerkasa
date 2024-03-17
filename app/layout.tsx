@@ -10,7 +10,26 @@ const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const metadata: Metadata = {
   title: 'Rukun Perkasa | Belanja Kusen Aman dan Nyaman',
-  description: 'E-commerce',
+  description: 'An open source e-commerce project built by chndrwali',
+  category: 'ecommerce',
+  authors: { name: 'chndrwali' },
+  keywords: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Wood Frame', 'Furniture', 'Kusen'],
+  creator: 'Candra Wali Sanjaya',
+  publisher: 'Candra Wali Sanjaya',
+  openGraph: {
+    title: 'Rukun Perkasa',
+    description: 'An open source e-commerce project built by chndrwali',
+    url: 'https://rukun-perkasa.vercel.app/',
+    siteName: 'Rukun Perkasa',
+    images: 'https://rukun-perkasa.vercel.app/images/rukunperkasa.PNG',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Rukun Perkasa',
+    description: 'An open source e-commerce project built by chndrwali',
+    images: ['https://rukun-perkasa.vercel.app/images/rukunperkasa.PNG'],
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

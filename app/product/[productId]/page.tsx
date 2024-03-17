@@ -14,7 +14,7 @@ const Product = async ({ params }: { params: IPrams }) => {
   const product = await getProductById(params);
   const user = await getCurrentUser();
 
-  if (!product) return <NullData title="Ups! Produk dengan id tidak ada" />;
+  if (!product) return <NullData title="Produk dengan id tidak ada" href="/productlist" subtitle="Kembali ke halaman Sebelumnya" />;
 
   return (
     <div className="p-8">

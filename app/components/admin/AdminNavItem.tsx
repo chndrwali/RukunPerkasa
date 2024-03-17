@@ -4,13 +4,19 @@ interface AdminNavItemProps {
   selected?: boolean;
   icon: IconType;
   label: string;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-const AdminNavItem: React.FC<AdminNavItemProps> = ({ selected, icon: Icon, label }) => {
+const AdminNavItem: React.FC<AdminNavItemProps> = ({ selected, icon: Icon, label, onClick }) => {
   return (
-    <div className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${selected ? 'border-b-slate-800 text-slate-800' : 'border-transparent text-slate-500'}`}>
-      <Icon size={20} />
-      <div className="font-medium text-sm text-center break-normal">{label}</div>
+    <div
+      onClick={onClick}
+      className={`flex flex-col items-center justify-center gap-1 p-2 border-b-2 cursor-pointer 
+      ${selected ? 'border-blue-500 text-blue-500' : 'border-transparent text-gray-600'} 
+      hover:border-blue-500 hover:text-blue-500 hover:bg-gray-100 transition-all rounded-md`}
+    >
+      <Icon size={24} />
+      <div className="font-medium text-sm">{label}</div>
     </div>
   );
 };

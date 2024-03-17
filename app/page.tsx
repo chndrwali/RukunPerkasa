@@ -3,6 +3,7 @@ import Container from './components/Container';
 import HomeBanner from './components/HomeBanner';
 import Imagine from './components/Imagine';
 
+export const dynamic = 'force-dynamic';
 export default async function Home() {
   return (
     <div className="p-8">

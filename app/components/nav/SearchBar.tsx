@@ -1,12 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import queryString from 'query-string';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const {
     register,
@@ -19,11 +20,11 @@ const SearchBar = () => {
     },
   });
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    if (!data.searchTerm) return router.push('/');
+    if (!data.searchTerm) return router.push('/productlist');
 
     const url = queryString.stringifyUrl(
       {
-        url: '/',
+        url: '/productlist',
         query: {
           searchTerm: data.searchTerm,
         },
@@ -33,10 +34,20 @@ const SearchBar = () => {
     router.push(url);
     reset();
   };
+
+  const isMainPage = pathname === '/productlist';
+
+  if (!isMainPage) return null;
   return (
     <div className="flex items-center">
       <div className="relative flex items-stretch w-full">
-        <input {...register('searchTerm')} autoComplete="off" type="text" placeholder="Cari kusen..." className="p-2 pl-8 border border-gray-100 rounded-l-xl focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-full" />
+        <input
+          {...register('searchTerm')}
+          autoComplete="off"
+          type="text"
+          placeholder="Cari di Rukun Perkasa..."
+          className="p-2 pl-8 border border-gray-100 rounded-l-xl focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-full"
+        />
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <FaSearch className="text-gray-400" />
         </div>
