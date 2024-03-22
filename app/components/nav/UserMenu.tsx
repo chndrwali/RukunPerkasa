@@ -34,6 +34,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     await signOut({ callbackUrl: '/', redirect: true });
   }, [toggleSignOutModal]);
 
+  const getLimitedName = (name: string | undefined): string => {
+    if (!name) return '';
+    return name.substring(0, 12);
+  };
+
   return (
     <>
       <div className="relative z-30">
@@ -76,7 +81,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           >
             <div className="flex flex-col">
               <MenuItem onClick={toggleOpen}>
-                <p className="text-sm text-gray-500 ">Masuk sebagai</p>
+                <p className="text-sm text-gray-500 ">Masuk sebagai:</p>
+                <p className="text-sm font-bold text-gray-800 ">{currentUser?.name && getLimitedName(currentUser.name)}</p>
                 <p className="text-sm font-bold text-gray-800 truncate">{currentUser?.email}</p>
               </MenuItem>
 

@@ -6,7 +6,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 const CategoriesHome = () => {
   return (
-    <section className="space-y-8 px-4 sm:px-6 lg:px-8 py-8 lg:pt-20 sm:pb-10">
+    <section className="space-y-8 px-4  py-8 lg:pt-20 sm:pb-10">
       <div className="flex items-end justify-between">
         <div className="flex flex-col space-y-4">
           <h2 className="max-w-sm text-3xl md:text-5xl text-start text-brown-600 font-bold leading-[1.1]">Kategori Unggulan</h2>
